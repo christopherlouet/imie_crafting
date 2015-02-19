@@ -1,0 +1,39 @@
+Contact:
+    type: entity
+    table: Contact
+    indexes:
+        fk_Contact_Perso_idx:
+            columns:
+                - perso_ref_id
+        fk_Contact_Perso1_idx:
+            columns:
+                - perso_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        persoRef:
+            targetEntity: Perso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                perso_ref_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        perso:
+            targetEntity: Perso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                perso_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

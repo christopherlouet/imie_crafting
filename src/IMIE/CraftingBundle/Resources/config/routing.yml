@@ -1,0 +1,3 @@
+imie_crafting_homepage:
+    path:     /
+    defaults: { _controller: IMIECraftingBundle:Default:index }

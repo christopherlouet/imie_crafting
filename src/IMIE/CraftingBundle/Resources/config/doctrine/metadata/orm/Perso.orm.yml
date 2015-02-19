@@ -1,0 +1,93 @@
+Perso:
+    type: entity
+    table: Perso
+    indexes:
+        fk_Perso_Helmet1_idx:
+            columns:
+                - Helmet_id
+        fk_Perso_Boot1_idx:
+            columns:
+                - Boot_id
+        fk_Perso_Leg1_idx:
+            columns:
+                - Leg_id
+        fk_Perso_Guild1_idx:
+            columns:
+                - Guild_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        level:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        class:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        race:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        sexe:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+    manyToOne:
+        helmet:
+            targetEntity: Helmet
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Helmet_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        boot:
+            targetEntity: Boot
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Boot_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        leg:
+            targetEntity: Leg
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Leg_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        guild:
+            targetEntity: Guild
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Guild_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

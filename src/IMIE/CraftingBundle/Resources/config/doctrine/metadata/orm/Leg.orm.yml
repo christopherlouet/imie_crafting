@@ -1,0 +1,35 @@
+Leg:
+    type: entity
+    table: Leg
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 45
+            fixed: false
+            comment: ''
+        rarity:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        level:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        weight:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+    lifecycleCallbacks: {  }

@@ -1,0 +1,39 @@
+Register:
+    type: entity
+    table: Register
+    indexes:
+        fk_Register_Guild_Perso_Perso1_idx:
+            columns:
+                - perso_id
+        fk_Register_Guild_Perso_Guild1_idx:
+            columns:
+                - guild_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        perso:
+            targetEntity: Perso
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                perso_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        guild:
+            targetEntity: Guild
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                guild_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,4 @@
+services:
+#    imie_crafting.example:
+#        class: IMIE\CraftingBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
