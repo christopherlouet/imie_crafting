@@ -1,4 +1,34 @@
-imie_crafting_api_point :
+imie_crafting_api_boot:
+    type: rest
+    resource: 'IMIECraftingBundle:Boot'
+    name_prefix: imie_crafting_api_
+
+imie_crafting_api_contact:
+    type: rest
+    resource: 'IMIECraftingBundle:Contact'
+    name_prefix: imie_crafting_api_
+
+imie_crafting_api_guild:
+    type: rest
+    resource: 'IMIECraftingBundle:Guild'
+    name_prefix: imie_crafting_api_
+
+imie_crafting_api_helmet:
+    type: rest
+    resource: 'IMIECraftingBundle:Helmet'
+    name_prefix: imie_crafting_api_
+
+imie_crafting_api_leg:
     type: rest
     resource: 'IMIECraftingBundle:Leg'
+    name_prefix: imie_crafting_api_
+
+imie_crafting_api_perso:
+    type: rest
+    resource: 'IMIECraftingBundle:Perso'
+    name_prefix: imie_crafting_api_
+
+imie_crafting_api_register:
+    type: rest
+    resource: 'IMIECraftingBundle:Register'
     name_prefix: imie_crafting_api_
