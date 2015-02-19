@@ -1,77 +1,78 @@
 <?php
 
-namespace Swtorelite\CraftingBundle\DataFixtures\ORM;
+namespace IMIE\CraftingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Swtorelite\CraftingBundle\Entity\Rarity;
+use IMIE\CraftingBundle\Entity\Register;
 
-class rarityData extends AbstractFixture implements OrderedFixtureInterface
+class RegisterData extends AbstractFixture implements OrderedFixtureInterface
 {
 	public function load(ObjectManager $em)
 	{
 
-		$rarity = new Rarity();
-		$rarity->setName('Bon marché');
-		$rarity->setColor('gris');
-		$rarity->setLevel(1);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-gris', $rarity);
-		
-		$rarity = new Rarity();
-		$rarity->setName('Standard');
-		$rarity->setColor('blanc');
-		$rarity->setLevel(2);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-blanc', $rarity);
+		$params = array (
+			array (
+				'tag'		=> 'register-register1',
+				'perso' 	=> 'perso-perso1',
+				'guild' 	=> 'guild-guild1',
+				'level' 	=> 12,
+				'rang' 		=> 3,
+			),
+			array (
+				'tag'		=> 'register-register2',
+				'perso' 	=> 'perso-perso1',
+				'guild' 	=> 'guild-guild2',
+				'level' 	=> 18,
+				'rang' 		=> 4,
+			),
+			array (
+				'tag'		=> 'register-register3',
+				'perso' 	=> 'perso-perso2',
+				'guild' 	=> 'guild-guild1',
+				'level' 	=> 15,
+				'rang' 		=> 4,
+			),
+			array (
+				'tag'		=> 'register-register4',
+				'perso' 	=> 'perso-perso3',
+				'guild' 	=> 'guild-guild2',
+				'level' 	=> 20,
+				'rang' 		=> 5,
+			),
+			array (
+				'tag'		=> 'register-register5',
+				'perso' 	=> 'perso-perso4',
+				'guild' 	=> 'guild-guild1',
+				'level' 	=> 25,
+				'rang' 		=> 7,
+			),
+		);
 
-		$rarity = new Rarity();
-		$rarity->setName('Qualité supérieure');
-		$rarity->setColor('vert');
-		$rarity->setLevel(3);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-vert', $rarity);
+		$this->addRegisters($em,$params);
+	}
 
-		$rarity = new Rarity();
-		$rarity->setName('Prototype');
-		$rarity->setColor('bleu');
-		$rarity->setLevel(4);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-bleu', $rarity);
+	private function addRegisters($em, $params){
 
-		$rarity = new Rarity();
-		$rarity->setName('Artefact');
-		$rarity->setColor('violet');
-		$rarity->setLevel(5);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-violet', $rarity);
+		foreach ($params as $param)
+		{
+			$entity = new Register();
 
-		$rarity = new Rarity();
-		$rarity->setName('Légendaire');
-		$rarity->setColor('mauve');
-		$rarity->setLevel(6);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-mauve', $rarity);
+	    	$entity->setPerso($this->getReference($param['perso']));
+	    	$entity->setGuild($this->getReference($param['guild']));
+	    	$entity->setLevel($param['level']);
+	    	$entity->setRang($param['rang']);
 
-		$rarity = new Rarity();
-		$rarity->setName('Personnalisé');
-		$rarity->setColor('orange');
-		$rarity->setLevel(7);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-orange', $rarity);
-		
+			$em->persist($entity);
+			$em->flush();
+			$this->addReference($param['tag'],$entity);
+		}
+
 	}
 
 	public function getOrder()
 	{
-		return 1;
+		return 15;
 	}
 }

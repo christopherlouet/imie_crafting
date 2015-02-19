@@ -17,6 +17,17 @@ Register:
             id: true
             generator:
                 strategy: IDENTITY
+    fields:
+        level:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        rang:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
     manyToOne:
         perso:
             targetEntity: Perso

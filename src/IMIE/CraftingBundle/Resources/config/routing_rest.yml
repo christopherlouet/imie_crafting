@@ -1,0 +1,4 @@
+imie_crafting_api_point :
+    type: rest
+    resource: 'IMIECraftingBundle:Leg'
+    name_prefix: imie_crafting_api_

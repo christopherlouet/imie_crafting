@@ -22,6 +22,20 @@ class Register
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rang", type="integer", nullable=false)
+     */
+    private $rang;
+
+    /**
      * @var \Perso
      *
      * @ORM\ManyToOne(targetEntity="Perso")
@@ -51,6 +65,52 @@ class Register
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return Register
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set rang
+     *
+     * @param integer $rang
+     * @return Register
+     */
+    public function setRang($rang)
+    {
+        $this->rang = $rang;
+
+        return $this;
+    }
+
+    /**
+     * Get rang
+     *
+     * @return integer 
+     */
+    public function getRang()
+    {
+        return $this->rang;
     }
 
     /**

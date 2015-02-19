@@ -1,3 +1,13 @@
 imie_crafting:
     resource: "@IMIECraftingBundle/Resources/config/routing.yml"
     prefix:   /
+
+imie_crafting_api:
+    type: rest
+    resource: "@IMIECraftingBundle/Resources/config/routing_rest.yml"
+    prefix: /api
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+

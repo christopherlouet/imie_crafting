@@ -1,77 +1,67 @@
 <?php
 
-namespace Swtorelite\CraftingBundle\DataFixtures\ORM;
+namespace IMIE\CraftingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Swtorelite\CraftingBundle\Entity\Rarity;
+use IMIE\CraftingBundle\Entity\Contact;
 
-class rarityData extends AbstractFixture implements OrderedFixtureInterface
+class ContactData extends AbstractFixture implements OrderedFixtureInterface
 {
 	public function load(ObjectManager $em)
 	{
 
-		$rarity = new Rarity();
-		$rarity->setName('Bon marché');
-		$rarity->setColor('gris');
-		$rarity->setLevel(1);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-gris', $rarity);
+		$params = array (
+			array (
+				'tag'		=> 'contact-contact1',
+				'persoRef' 	=> 'perso-perso1',
+				'perso' 	=> 'perso-perso2',
+			),
+			array (
+				'tag'		=> 'contact-contact2',
+				'persoRef' 	=> 'perso-perso1',
+				'perso' 	=> 'perso-perso3',
+			),
+			array (
+				'tag'		=> 'contact-contact3',
+				'persoRef' 	=> 'perso-perso1',
+				'perso' 	=> 'perso-perso4',
+			),
+			array (
+				'tag'		=> 'contact-contact4',
+				'persoRef' 	=> 'perso-perso2',
+				'perso' 	=> 'perso-perso4',
+			),
+			array (
+				'tag'		=> 'contact-contact5',
+				'persoRef' 	=> 'perso-perso3',
+				'perso' 	=> 'perso-perso5',
+			),
+		);
+
+		$this->addContacts($em, $params);
 		
-		$rarity = new Rarity();
-		$rarity->setName('Standard');
-		$rarity->setColor('blanc');
-		$rarity->setLevel(2);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-blanc', $rarity);
+	}
 
-		$rarity = new Rarity();
-		$rarity->setName('Qualité supérieure');
-		$rarity->setColor('vert');
-		$rarity->setLevel(3);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-vert', $rarity);
+	private function addContacts($em, $params){
 
-		$rarity = new Rarity();
-		$rarity->setName('Prototype');
-		$rarity->setColor('bleu');
-		$rarity->setLevel(4);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-bleu', $rarity);
+		foreach ($params as $param)
+		{
+			$entity = new Contact();
 
-		$rarity = new Rarity();
-		$rarity->setName('Artefact');
-		$rarity->setColor('violet');
-		$rarity->setLevel(5);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-violet', $rarity);
+			$entity->setPersoRef($this->getReference($param['persoRef']));
+	    	$entity->setPerso($this->getReference($param['perso']));
 
-		$rarity = new Rarity();
-		$rarity->setName('Légendaire');
-		$rarity->setColor('mauve');
-		$rarity->setLevel(6);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-mauve', $rarity);
+			$em->persist($entity);
+			$em->flush();
+			$this->addReference($param['tag'],$entity);
+		}
 
-		$rarity = new Rarity();
-		$rarity->setName('Personnalisé');
-		$rarity->setColor('orange');
-		$rarity->setLevel(7);
-		$em->persist($rarity);
-		$em->flush();
-		$this->addReference('rarity-orange', $rarity);
-		
 	}
 
 	public function getOrder()
 	{
-		return 1;
+		return 15;
 	}
 }
