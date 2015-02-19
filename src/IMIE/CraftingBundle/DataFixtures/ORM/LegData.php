@@ -6,57 +6,26 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use IMIE\CraftingBundle\Entity\Leg;
+use Faker;
 
 class LegData extends AbstractFixture implements OrderedFixtureInterface
 {
 	public function load(ObjectManager $em)
 	{
-
-		$params = array (
-			array (
-				'tag'		=> 'leg-leg1',
-				'name' 		=> 'leg1',
-				'rarity' 	=> 1,
-				'level' 	=> 8,
-				'weight' 	=> 2,
-			),
-			array (
-				'tag'		=> 'leg-leg2',
-				'name' 		=> 'leg2',
-				'rarity' 	=> 3,
-				'level' 	=> 12,
-				'weight' 	=> 4,
-			),
-			array (
-				'tag'		=> 'leg-leg3',
-				'name' 		=> 'leg3',
-				'rarity' 	=> 5,
-				'level' 	=> 25,
-				'weight' 	=> 20,
-			),
-			array (
-				'tag'		=> 'leg-leg4',
-				'name' 		=> 'leg4',
-				'rarity' 	=> 2,
-				'level' 	=> 6,
-				'weight' 	=> 10,
-			),
-			array (
-				'tag'		=> 'leg-leg5',
-				'name' 		=> 'leg5',
-				'rarity' 	=> 3,
-				'level' 	=> 12,
-				'weight' 	=> 10,
-			),
-			array (
-				'tag'		=> 'leg-leg6',
-				'name' 		=> 'leg6',
-				'rarity' 	=> 4,
-				'level' 	=> 10,
-				'weight' 	=> 6,
-			),
-		);
-
+		
+		$faker = Faker\Factory::create ();
+		
+		$params = array ();
+		
+		for($i = 1; $i <= 50; $i ++) {
+			$params [] = array (
+					'tag'		=> 'leg-leg'.$i,
+					'name' 		=> 'leg'.$i,
+					'rarity' 	=> $faker->numberBetween ( 1, 10),
+					'level' 	=> $faker->numberBetween ( 1, 50 ),
+					'weight' 	=> $faker->numberBetween ( 1, 20 ),
+			);
+		}
 		$this->addlegs($em,$params);
 		
 	}

@@ -6,56 +6,25 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use IMIE\CraftingBundle\Entity\Boot;
+use Faker;
 
 class BootData extends AbstractFixture implements OrderedFixtureInterface
 {
 	public function load(ObjectManager $em)
 	{
-
-		$params = array (
-			array (
-				'tag'		=> 'boot-boot1',
-				'name' 		=> 'boot1',
-				'rarity' 	=> 1,
-				'level' 	=> 8,
-				'weight' 	=> 2,
-			),
-			array (
-				'tag'		=> 'boot-boot2',
-				'name' 		=> 'boot2',
-				'rarity' 	=> 3,
-				'level' 	=> 12,
-				'weight' 	=> 4,
-			),
-			array (
-				'tag'		=> 'boot-boot3',
-				'name' 		=> 'boot3',
-				'rarity' 	=> 5,
-				'level' 	=> 25,
-				'weight' 	=> 20,
-			),
-			array (
-				'tag'		=> 'boot-boot4',
-				'name' 		=> 'boot4',
-				'rarity' 	=> 2,
-				'level' 	=> 6,
-				'weight' 	=> 10,
-			),
-			array (
-				'tag'		=> 'boot-boot5',
-				'name' 		=> 'boot5',
-				'rarity' 	=> 3,
-				'level' 	=> 12,
-				'weight' 	=> 10,
-			),
-			array (
-				'tag'		=> 'boot-boot6',
-				'name' 		=> 'boot6',
-				'rarity' 	=> 4,
-				'level' 	=> 10,
-				'weight' 	=> 6,
-			),
-		);
+		$faker = Faker\Factory::create ();
+		
+		$params = array ();
+		
+		for($i = 1; $i <= 50; $i ++) {
+			$params [] = array (
+					'tag'		=> 'boot-boot'.$i,
+					'name' 		=> 'boot'.$i,
+					'rarity' 	=> $faker->numberBetween ( 1, 10),
+					'level' 	=> $faker->numberBetween ( 1, 50 ),
+					'weight' 	=> $faker->numberBetween ( 1, 20 ),
+			);
+		}
 
 		$this->addBoots($em,$params);
 		

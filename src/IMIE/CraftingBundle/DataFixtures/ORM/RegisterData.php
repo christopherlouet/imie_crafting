@@ -6,49 +6,26 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use IMIE\CraftingBundle\Entity\Register;
+use Faker;
 
 class RegisterData extends AbstractFixture implements OrderedFixtureInterface
 {
 	public function load(ObjectManager $em)
 	{
-
-		$params = array (
-			array (
-				'tag'		=> 'register-register1',
-				'perso' 	=> 'perso-perso1',
-				'guild' 	=> 'guild-guild1',
-				'level' 	=> 12,
-				'rang' 		=> 3,
-			),
-			array (
-				'tag'		=> 'register-register2',
-				'perso' 	=> 'perso-perso1',
-				'guild' 	=> 'guild-guild2',
-				'level' 	=> 18,
-				'rang' 		=> 4,
-			),
-			array (
-				'tag'		=> 'register-register3',
-				'perso' 	=> 'perso-perso2',
-				'guild' 	=> 'guild-guild1',
-				'level' 	=> 15,
-				'rang' 		=> 4,
-			),
-			array (
-				'tag'		=> 'register-register4',
-				'perso' 	=> 'perso-perso3',
-				'guild' 	=> 'guild-guild2',
-				'level' 	=> 20,
-				'rang' 		=> 5,
-			),
-			array (
-				'tag'		=> 'register-register5',
-				'perso' 	=> 'perso-perso4',
-				'guild' 	=> 'guild-guild1',
-				'level' 	=> 25,
-				'rang' 		=> 7,
-			),
-		);
+		
+		$faker = Faker\Factory::create ();
+		
+		$params = array ();
+		
+		for($i = 1; $i <= 50; $i ++) {
+			$params [] = array (
+				'tag'		=> 'register-register'.$i,
+				'perso' 	=> 'perso-perso'.$faker->numberBetween ( 1, 50),
+				'guild' 	=> 'guild-guild'.$faker->numberBetween ( 1, 50),
+				'level' 	=> $faker->numberBetween ( 1, 50),
+				'rang' 		=> $faker->numberBetween ( 1, 30),
+			);
+		}
 
 		$this->addRegisters($em,$params);
 	}
