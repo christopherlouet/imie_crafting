@@ -1,0 +1,21 @@
+fos_rest:
+    disable_csrf_role: ROLE_API
+    param_fetcher_listener: true
+    format_listener: true
+    body_listener: true
+    routing_loader:
+      default_format: json
+    view:
+        formats:
+          json: true
+          xml: true
+        templating_formats:
+          html: true
+        force_redirects:
+          html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        #view_response_listener: 'force'
+    body_converter:
+      enabled: true
+    

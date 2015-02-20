@@ -255,12 +255,30 @@ class GuildController extends Controller
     *
     * @View()
     * @Get("/guilds")
-    * @ApiDoc
+    * @ApiDoc (
+    * section = "Guild Entity"
+    * )
     */
     public function getGuildsAction() {
 
         $em = $this->getDoctrine()->getManager();
         $guilds = $em->getRepository('IMIECraftingBundle:Guild')->findAll();
         return array ('guilds' => $guilds);
+    }
+    
+    /**
+     * Get availalble Guild by Id.
+     *
+     * @View()
+     * @Get("/guild/{id}")
+     * @ApiDoc (
+     * 	section = "Guild Entity"
+     * )
+     */
+    public function getGuildByIdAction($id) {
+    
+    	$em = $this->getDoctrine()->getManager();
+    	$guild = $em->getRepository('IMIECraftingBundle:Guild')->findOneById($id);
+    	return array ('guild' => $guild);
     }
 }

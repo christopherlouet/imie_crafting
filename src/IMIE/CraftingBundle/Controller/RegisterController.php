@@ -255,7 +255,9 @@ class RegisterController extends Controller
     *
     * @View()
     * @Get("/registers")
-    * @ApiDoc
+    * @ApiDoc (
+    * section = "Register Entity"
+    * )
     */
     public function getRegistersAction() {
 

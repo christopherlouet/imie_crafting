@@ -255,7 +255,10 @@ class LegController extends Controller
     *
     * @View()
     * @Get("/legs")
-    * @ApiDoc
+    * @ApiDoc (
+    * section = "Leg Entity"
+    * 
+    * )
     */
     public function getLegsAction() {
 
