@@ -9,18 +9,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use IMIE\CraftingBundle\Entity\Leg;
 use IMIE\CraftingBundle\Form\LegType;
-
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Controller\FOSRestController;
 
 /**
  * Leg controller.
  *
  * @Route("/leg")
  */
-class LegController extends Controller
+class LegController extends FOSRestController
 {
 
     /**
@@ -251,19 +252,150 @@ class LegController extends Controller
     }
 
     /**
-    * Get availalble Legs.
-    *
-    * @View()
-    * @Get("/legs")
-    * @ApiDoc (
-    * section = "Leg Entity"
-    * 
-    * )
-    */
+	 * Get availalble Legs.
+	 *
+	 * @Rest\Get("legs")
+	 * @ApiDoc (
+	 * section = "Leg Entity",
+	 * description = "get all legs from database"
+	 * )
+	 */
     public function getLegsAction() {
 
-        $em = $this->getDoctrine()->getManager();
-        $legs = $em->getRepository('IMIECraftingBundle:Leg')->findAll();
-        return array ('helmets' => $legs);
+        $em = $this->getDoctrine ()->getManager ();
+		$legs = $em->getRepository ( 'IMIECraftingBundle:Leg' )->findAll ();
+		$view = $this->view ( array (
+				"legs" => $legs 
+		), 200 );
+		return $this->handleView ( $view );
+    }
+    
+    /**
+     * Insert Leg.
+     *
+     * @Rest\Post("leg")
+     * @ApiDoc (
+     * section = "Leg Entity",
+     * description = "insert leg in database",
+     * requirements = {
+     * {
+     * "name" = "name",
+     * "dataType" = "string",
+     * "description" = "The name of the leg."
+     * },
+     * {
+     * "name" = "rarity",
+     * "dataType" = "int",
+     * "description" = "The rarity of the leg."
+     * },
+     * {
+     * "name" = "level",
+     * "dataType" = "int",
+     * "description" = "The level of the leg."
+     * },
+     * {
+     * "name" = "weight",
+     * "dataType" = "int",
+     * "description" = "The weight of the leg."
+     * }
+     * },
+     * statusCodes = {
+     * 200 = "Return One successful.",
+     * 406 = "Empty Data."
+     * }
+     * )
+     */
+    public function postLegAction() {
+    	$em = $this->getDoctrine ()->getManager ();
+    
+    	$json = json_decode ( $this->getRequest ()->getContent (), true );
+    
+    	$leg = new Leg ();
+    	$leg->setName ( $json ['name'] );
+    	$leg->setRarity ( $json ['rarity'] );
+    	$leg->setLevel ( $json ['level'] );
+    	$leg->setWeight ( $json ['weight'] );
+    
+    	$em->persist ( $leg );
+    	$em->flush ();
+    
+    	if ($leg) {
+    		$view = $this->view ( array (
+    				"leg" => $leg
+    		), 200 );
+    	} else {
+    		$view = $this->view ( array (
+    				"message" => "Insert error"
+    		), 406 );
+    	}
+    
+    	return $this->handleView ( $view );
+    }
+    
+    /**
+     * Update Leg.
+     *
+     * @Rest\Put("leg")
+     * @ApiDoc (
+     * section = "Leg Entity",
+     * description = "update leg in database",
+     * requirements = {
+     * {
+     * "name" = "id",
+     * "dataType" = "int",
+     * "description" = "The id of the leg."
+     * },
+     * {
+     * "name" = "name",
+     * "dataType" = "string",
+     * "description" = "The name of the leg."
+     * },
+     * {
+     * "name" = "rarity",
+     * "dataType" = "int",
+     * "description" = "The rarity of the leg."
+     * },
+     * {
+     * "name" = "level",
+     * "dataType" = "int",
+     * "description" = "The level of the leg."
+     * },
+     * {
+     * "name" = "weight",
+     * "dataType" = "int",
+     * "description" = "The weight of the leg."
+     * }
+     * },
+     * statusCodes = {
+     * 200 = "Return One successful.",
+     * 406 = "Empty Data."
+     * }
+     * )
+     */
+    public function putLegAction() {
+    	$em = $this->getDoctrine ()->getManager ();
+    
+    	$json = json_decode ( $this->getRequest ()->getContent (), true );
+    
+    	$leg = $em->getRepository ( 'IMIECraftingBundle:Leg' )->findOneById ( $json ['id'] );
+    	$leg->setName ( $json ['name'] );
+    	$leg->setRarity ( $json ['rarity'] );
+    	$leg->setLevel ( $json ['level'] );
+    	$leg->setWeight ( $json ['weight'] );
+    
+    	$em->persist ( $leg );
+    	$em->flush ();
+    
+    	if ($leg) {
+    		$view = $this->view ( array (
+    				"leg" => $leg
+    		), 200 );
+    	} else {
+    		$view = $this->view ( array (
+    				"message" => "Insert error"
+    		), 406 );
+    	}
+    
+    	return $this->handleView ( $view );
     }
 }

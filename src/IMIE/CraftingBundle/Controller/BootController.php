@@ -273,7 +273,7 @@ class BootController extends FOSRestController {
 	/**
 	 * Insert Boot.
 	 *
-	 * @Rest\Put("boot")
+	 * @Rest\Post("boot")
 	 * @ApiDoc (
 	 * section = "Boot Entity",
 	 * description = "insert boot in database",
@@ -305,7 +305,7 @@ class BootController extends FOSRestController {
 	 * }
 	 * )
 	 */
-	public function putBootAction() {
+	public function postBootAction() {
 		$em = $this->getDoctrine ()->getManager ();
 		
 		$json = json_decode ( $this->getRequest ()->getContent (), true );
@@ -329,6 +329,73 @@ class BootController extends FOSRestController {
 			), 406 );
 		}
 		
+		return $this->handleView ( $view );
+	}
+	
+	/**
+	 * Update Helmet.
+	 *
+	 * @Rest\Put("boot")
+	 * @ApiDoc (
+	 * section = "Boot Entity",
+	 * description = "update boot in database",
+	 * requirements = {
+	 * {
+	 * "name" = "id",
+	 * "dataType" = "int",
+	 * "description" = "The id of the boot."
+	 * },
+	 * {
+	 * "name" = "name",
+	 * "dataType" = "string",
+	 * "description" = "The name of the boot."
+	 * },
+	 * {
+	 * "name" = "rarity",
+	 * "dataType" = "int",
+	 * "description" = "The rarity of the boot."
+	 * },
+	 * {
+	 * "name" = "level",
+	 * "dataType" = "int",
+	 * "description" = "The level of the boot."
+	 * },
+	 * {
+	 * "name" = "weight",
+	 * "dataType" = "int",
+	 * "description" = "The weight of the boot."
+	 * }
+	 * },
+	 * statusCodes = {
+	 * 200 = "Return One successful.",
+	 * 406 = "Empty Data."
+	 * }
+	 * )
+	 */
+	public function putBootAction() {
+		$em = $this->getDoctrine ()->getManager ();
+	
+		$json = json_decode ( $this->getRequest ()->getContent (), true );
+	
+		$boot = $em->getRepository ( 'IMIECraftingBundle:Boot' )->findOneById ( $json ['id'] );
+		$boot->setName ( $json ['name'] );
+		$boot->setRarity ( $json ['rarity'] );
+		$boot->setLevel ( $json ['level'] );
+		$boot->setWeight ( $json ['weight'] );
+	
+		$em->persist ( $boot );
+		$em->flush ();
+	
+		if ($boot) {
+			$view = $this->view ( array (
+					"boot" => $boot
+			), 200 );
+		} else {
+			$view = $this->view ( array (
+					"message" => "Insert error"
+			), 406 );
+		}
+	
 		return $this->handleView ( $view );
 	}
 }

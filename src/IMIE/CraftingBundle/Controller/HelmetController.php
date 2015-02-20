@@ -389,7 +389,7 @@ class HelmetController extends FOSRestController {
 		
 		if ($helmet) {
 			$view = $this->view ( array (
-					"boot" => $helmet 
+					"helmet" => $helmet 
 			), 200 );
 		} else {
 			$view = $this->view ( array (

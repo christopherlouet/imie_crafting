@@ -9,18 +9,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use IMIE\CraftingBundle\Entity\Guild;
 use IMIE\CraftingBundle\Form\GuildType;
-
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Controller\FOSRestController;
 
 /**
  * Guild controller.
  *
  * @Route("/guild")
  */
-class GuildController extends Controller
+class GuildController extends FOSRestController
 {
 
     /**
@@ -251,34 +252,40 @@ class GuildController extends Controller
     }
 
     /**
-    * Get availalble Guilds.
-    *
-    * @View()
-    * @Get("/guilds")
-    * @ApiDoc (
-    * section = "Guild Entity"
-    * )
-    */
-    public function getGuildsAction() {
+	 * Get availalble Guilds.
+	 *
+	 * @Rest\Get("guilds")
+	 * @ApiDoc (
+	 * section = "Guild Entity",
+	 * description = "get all guilds from database"
+	 * )
+	 */
+	public function getGuildsAction() {
 
-        $em = $this->getDoctrine()->getManager();
-        $guilds = $em->getRepository('IMIECraftingBundle:Guild')->findAll();
-        return array ('guilds' => $guilds);
-    }
+		$em = $this->getDoctrine ()->getManager ();
+		$guilds = $em->getRepository ( 'IMIECraftingBundle:Guild' )->findAll ();
+		$view = $this->view ( array (
+				"guilds" => $guilds 
+		), 200 );
+		return $this->handleView ( $view );
+	}
     
     /**
-     * Get availalble Guild by Id.
+     * Get an availalble Guild.
      *
-     * @View()
-     * @Get("/guild/{id}")
+     * @Rest\Get("guild/{id}")
      * @ApiDoc (
-     * 	section = "Guild Entity"
+     * section = "Guild Entity",
+     * description = "get a guild from database"
      * )
      */
     public function getGuildByIdAction($id) {
     
-    	$em = $this->getDoctrine()->getManager();
+    	$em = $this->getDoctrine ()->getManager ();
     	$guild = $em->getRepository('IMIECraftingBundle:Guild')->findOneById($id);
-    	return array ('guild' => $guild);
+    	$view = $this->view ( array (
+    			"guild" => $guild
+    	), 200 );
+    	return $this->handleView ( $view );
     }
 }
