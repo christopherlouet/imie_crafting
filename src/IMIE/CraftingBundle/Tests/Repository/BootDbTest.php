@@ -2,8 +2,8 @@
 
 namespace IMIE\CraftingBundle\Tests\Repository;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use IMIE\CraftingBundle\Entity\Boot;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BootDbTest extends WebTestCase {
 	
@@ -36,9 +36,10 @@ class BootDbTest extends WebTestCase {
 		$boot->setWeight ( 1 );
 		
 		$this->em->persist ( $boot );
+		$this->em->flush();
 		
 		$bootTest = $this->repository->findOneById ( $boot->getId () );
 		
-		$this->assertEqual ( $boot, $bootTest );
+		$this->assertEquals( $boot, $bootTest );
 	}
 }

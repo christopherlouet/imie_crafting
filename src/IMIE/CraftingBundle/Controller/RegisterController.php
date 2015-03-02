@@ -9,18 +9,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use IMIE\CraftingBundle\Entity\Register;
 use IMIE\CraftingBundle\Form\RegisterType;
-
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Controller\FOSRestController;
 
 /**
  * Register controller.
  *
  * @Route("/register")
  */
-class RegisterController extends Controller
+class RegisterController extends FOSRestController
 {
 
     /**
@@ -251,18 +252,65 @@ class RegisterController extends Controller
     }
 
     /**
-    * Get availalble Registers.
-    *
-    * @View()
-    * @Get("/registers")
-    * @ApiDoc (
-    * section = "Register Entity"
-    * )
-    */
-    public function getRegistersAction() {
-
-        $em = $this->getDoctrine()->getManager();
-        $registers = $em->getRepository('IMIECraftingBundle:Register')->findAll();
-        return array ('registers' => $registers);
+     * Insert Register.
+     *
+     * @Rest\Post("register")
+     * @ApiDoc (
+     * section = "Register Entity",
+     * description = "insert register in database",
+     * requirements = {
+     * {
+     * "name" = "perso",
+     * "dataType" = "int",
+     * "description" = "The perso id of the register."
+     * },
+     * {
+     * "name" = "guild",
+     * "dataType" = "int",
+     * "description" = "The guild id of the register."
+     * },
+     * {
+     * "name" = "level",
+     * "dataType" = "int",
+     * "description" = "The level of the register."
+     * },
+     * {
+     * "name" = "rang",
+     * "dataType" = "int",
+     * "description" = "The rang of the register."
+     * }
+     * },
+     * statusCodes = {
+     * 200 = "Return One successful.",
+     * 406 = "Empty Data."
+     * }
+     * )
+     */
+    public function postRegisterAction() {
+    	$em = $this->getDoctrine ()->getManager ();
+    
+    	$json = json_decode ( $this->getRequest ()->getContent (), true );
+    
+    	$register = new Register ();
+    	$register->setName ( $json ['perso'] );
+    	$register->setRarity ( $json ['guild'] );
+    	$register->setLevel ( $json ['level'] );
+    	$register->setWeight ( $json ['rang'] );
+    
+    	$em->persist ( $register );
+    	$em->flush ();
+    
+    	if ($register) {
+    		$view = $this->view ( array (
+    				"register" => $register
+    		), 200 );
+    	} else {
+    		$view = $this->view ( array (
+    				"message" => "Insert error"
+    		), 406 );
+    	}
+    
+    	return $this->handleView ( $view );
     }
+    
 }

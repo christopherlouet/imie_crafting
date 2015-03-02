@@ -1,0 +1,29 @@
+boot:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Boot:index" }
+
+boot_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Boot:new" }
+
+boot_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Boot:create" }
+    requirements: { _method: post }
+
+boot_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Boot:show" }
+
+boot_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Boot:edit" }
+
+boot_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Boot:update" }
+    requirements: { _method: post|put }
+
+boot_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Boot:delete" }

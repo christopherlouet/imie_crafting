@@ -1,3 +1,7 @@
 imie_crafting_homepage:
     path:     /
-    defaults: { _controller: IMIECraftingBundle:Default:index }
+    defaults: { _controller: "IMIECraftingBundle:Default:index" }
+
+imie_crafting_boot:
+    resource: "routing/boot.yml"
+    prefix: /boot

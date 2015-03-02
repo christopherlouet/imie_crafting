@@ -319,11 +319,115 @@ class PersoController extends FOSRestController {
 	/**
 	 * Insert Perso.
 	 *
-	 * @Rest\Put("perso")
+	 * @Rest\Post("perso")
 	 * @ApiDoc (
 	 * section = "Perso Entity",
 	 * description = "insert perso in database",
 	 * requirements = {
+	 * {
+	 * "name" = "name",
+	 * "dataType" = "string",
+	 * "description" = "The name of the personnage."
+	 * },
+	 * {
+	 * "name" = "level",
+	 * "dataType" = "int",
+	 * "description" = "The level of the personnage."
+	 * },
+	 * {
+	 * "name" = "class",
+	 * "dataType" = "string",
+	 * "description" = "The class of the personnage."
+	 * },
+	 * {
+	 * "name" = "race",
+	 * "dataType" = "string",
+	 * "description" = "The race of the personnage."
+	 * },
+	 * {
+	 * "name" = "sexe",
+	 * "dataType" = "string",
+	 * "requirement" = "Homme|Femme",
+	 * "description" = "The sexe of the personnage."
+	 * },
+	 * {
+	 * "name" = "helmet",
+	 * "dataType" = "int",
+	 * "description" = "The helmet of the personnage."
+	 * },
+	 * {
+	 * "name" = "boot",
+	 * "dataType" = "int",
+	 * "description" = "The boot of the personnage."
+	 * },
+	 * {
+	 * "name" = "leg",
+	 * "dataType" = "int",
+	 * "description" = "The leg of the personnage."
+	 * },
+	 * {
+	 * "name" = "guild",
+	 * "dataType" = "int",
+	 * "description" = "The guild of the personnage."
+	 * }
+	 * },
+	 * statusCodes = {
+	 * 200 = "Return One successful.",
+	 * 406 = "Empty Data."
+	 * }
+	 * )
+	 */
+	public function postPersoAction() {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$json = json_decode ( $this->getRequest ()->getContent (), true );
+		
+		$perso = new Perso ();
+		$perso->setName ( $json ['name'] );
+		$perso->setLevel ( $json ['level'] );
+		$perso->setClass ( $json ['class'] );
+		$perso->setRace ( $json ['race'] );
+		$perso->setSexe ( $json ['sexe'] );
+		
+		$helmet = $em->getRepository ( 'IMIECraftingBundle:Helmet' )->findOneById ( $json ['helmet'] );
+		$boot = $em->getRepository ( 'IMIECraftingBundle:Boot' )->findOneById ( $json ['boot'] );
+		$leg = $em->getRepository ( 'IMIECraftingBundle:Leg' )->findOneById ( $json ['leg'] );
+		$guild = $em->getRepository ( 'IMIECraftingBundle:Guild' )->findOneById ( $json ['guild'] );
+		
+		$perso->setHelmet ( $helmet );
+		$perso->setBoot ( $boot );
+		$perso->setLeg ( $leg );
+		$perso->setGuild ( $guild );
+		
+		$em->persist ( $perso );
+		$em->flush ();
+		
+		if ($perso) {
+			$view = $this->view ( array (
+					"perso" => $perso 
+			), 200 );
+		} else {
+			$view = $this->view ( array (
+					"message" => "Insert error" 
+			), 406 );
+		}
+		
+		return $this->handleView ( $view );
+	}
+	
+	/**
+	 * Update Perso.
+	 *
+	 * @Rest\Put("perso")
+	 * @ApiDoc (
+	 * section = "Perso Entity",
+	 * description = "Update perso in database",
+	 * requirements = {
+	 * {
+	 * "name" = "id",
+	 * "dataType" = "int",
+	 * "description" = "The id of the personnage."
+	 * },
 	 * {
 	 * "name" = "name",
 	 * "dataType" = "string",
@@ -382,7 +486,7 @@ class PersoController extends FOSRestController {
 		
 		$json = json_decode ( $this->getRequest ()->getContent (), true );
 		
-		$perso = new Perso ();
+		$perso = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findOneById ( $json ['id']  );
 		$perso->setName ( $json ['name'] );
 		$perso->setLevel ( $json ['level'] );
 		$perso->setClass ( $json ['class'] );
