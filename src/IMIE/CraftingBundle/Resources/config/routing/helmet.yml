@@ -1,0 +1,29 @@
+helmet:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Helmet:index" }
+
+helmet_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Helmet:new" }
+
+helmet_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Helmet:create" }
+    requirements: { _method: post }
+
+helmet_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Helmet:show" }
+
+helmet_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Helmet:edit" }
+
+helmet_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Helmet:update" }
+    requirements: { _method: post|put }
+
+helmet_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Helmet:delete" }

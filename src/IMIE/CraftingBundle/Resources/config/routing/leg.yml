@@ -1,0 +1,29 @@
+leg:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Leg:index" }
+
+leg_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Leg:new" }
+
+leg_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Leg:create" }
+    requirements: { _method: post }
+
+leg_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Leg:show" }
+
+leg_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Leg:edit" }
+
+leg_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Leg:update" }
+    requirements: { _method: post|put }
+
+leg_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Leg:delete" }

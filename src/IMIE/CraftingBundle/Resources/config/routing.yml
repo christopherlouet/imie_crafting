@@ -5,3 +5,27 @@ imie_crafting_homepage:
 imie_crafting_boot:
     resource: "routing/boot.yml"
     prefix: /boot
+
+imie_crafting_contact:
+    resource: "routing/contact.yml"
+    prefix: /contact
+
+imie_crafting_guild:
+    resource: "routing/guild.yml"
+    prefix: /guild
+
+imie_crafting_helmet:
+    resource: "routing/helmet.yml"
+    prefix: /helmet
+    
+imie_crafting_leg:
+    resource: "routing/leg.yml"
+    prefix: /leg
+    
+imie_crafting_perso:
+    resource: "routing/perso.yml"
+    prefix: /perso
+
+imie_crafting_register:
+    resource: "routing/register.yml"
+    prefix: /register

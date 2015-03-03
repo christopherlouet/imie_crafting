@@ -1,0 +1,29 @@
+perso:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Perso:index" }
+
+perso_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Perso:new" }
+
+perso_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Perso:create" }
+    requirements: { _method: post }
+
+perso_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Perso:show" }
+
+perso_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Perso:edit" }
+
+perso_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Perso:update" }
+    requirements: { _method: post|put }
+
+perso_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Perso:delete" }

@@ -1,0 +1,29 @@
+contact:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Contact:index" }
+
+contact_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Contact:new" }
+
+contact_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Contact:create" }
+    requirements: { _method: post }
+
+contact_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Contact:show" }
+
+contact_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Contact:edit" }
+
+contact_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Contact:update" }
+    requirements: { _method: post|put }
+
+contact_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Contact:delete" }

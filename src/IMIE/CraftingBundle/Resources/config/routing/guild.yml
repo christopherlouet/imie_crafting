@@ -1,0 +1,29 @@
+guild:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Guild:index" }
+
+guild_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Guild:new" }
+
+guild_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Guild:create" }
+    requirements: { _method: post }
+
+guild_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Guild:show" }
+
+guild_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Guild:edit" }
+
+guild_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Guild:update" }
+    requirements: { _method: post|put }
+
+guild_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Guild:delete" }

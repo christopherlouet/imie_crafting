@@ -1,0 +1,29 @@
+register:
+    pattern:  /
+    defaults: { _controller: "IMIECraftingBundle:Register:index" }
+
+register_new:
+    pattern:  /new
+    defaults: { _controller: "IMIECraftingBundle:Register:new" }
+
+register_create:
+    pattern:  /create
+    defaults: { _controller: "IMIECraftingBundle:Register:create" }
+    requirements: { _method: post }
+
+register_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "IMIECraftingBundle:Register:show" }
+
+register_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IMIECraftingBundle:Register:edit" }
+
+register_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "IMIECraftingBundle:Register:update" }
+    requirements: { _method: post|put }
+
+register_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IMIECraftingBundle:Register:delete" }
