@@ -16,9 +16,9 @@ class ContactData extends AbstractFixture implements OrderedFixtureInterface {
 		
 		for($i = 1; $i <= 50; $i ++) {
 			$params [] = array (
-					'tag' => 'contact-contact'.$i,
-					'persoRef' => 'perso-perso'.$faker->numberBetween ( 1, 50),
-					'perso' => 'perso-perso'.$faker->numberBetween ( 1, 50) 
+					'tag' => 'contact-contact' . $i,
+					'persoRef' => 'perso-perso' . $faker->numberBetween ( 1, 50 ),
+					'perso' => 'perso-perso' . $faker->numberBetween ( 1, 50 ) 
 			);
 		}
 		
