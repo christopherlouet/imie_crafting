@@ -4,7 +4,14 @@ namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Boot controller tests.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class BootControllerTest extends WebTestCase {
+	
 	public function testCompleteScenario() {
 		// Create a new client to browse the application
 		$client = static::createClient ();

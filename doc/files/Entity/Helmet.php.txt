@@ -1,0 +1,158 @@
+<?php
+
+/**
+ * Helmet entity.
+ *
+ */
+namespace IMIE\CraftingBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Helmet class.
+ *
+ * @ORM\Table(name="Helmet")
+ * @ORM\Entity
+ */
+class Helmet {
+	/**
+	 * Id of helmet.
+	 *
+	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
+	 *      @ORM\Id
+	 *      @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
+	private $id;
+	
+	/**
+	 * Name of helmet.
+	 *
+	 * @var string @ORM\Column(name="name", type="string", length=45, nullable=false)
+	 */
+	private $name;
+	
+	/**
+	 * Rarity of helmet.
+	 *
+	 * @var integer @ORM\Column(name="rarity", type="integer", nullable=false)
+	 */
+	private $rarity;
+	
+	/**
+	 * Level of helmet.
+	 *
+	 * @var integer @ORM\Column(name="level", type="integer", nullable=false)
+	 */
+	private $level;
+	
+	/**
+	 * Weight of helmet.
+	 *
+	 * @var integer @ORM\Column(name="weight", type="integer", nullable=false)
+	 */
+	private $weight;
+	
+	/**
+	 * Get id of helmet.
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 * Set name of helmet.
+	 *
+	 * @param string $name        	
+	 * @return Helmet
+	 */
+	public function setName($name) {
+		$this->name = $name;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get name of helmet.
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+	
+	/**
+	 * Set rarity of helmet.
+	 *
+	 * @param integer $rarity        	
+	 * @return Helmet
+	 */
+	public function setRarity($rarity) {
+		$this->rarity = $rarity;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get rarity of helmet.
+	 *
+	 * @return integer
+	 */
+	public function getRarity() {
+		return $this->rarity;
+	}
+	
+	/**
+	 * Set level of helmet.
+	 *
+	 * @param integer $level        	
+	 * @return Helmet
+	 */
+	public function setLevel($level) {
+		$this->level = $level;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get level of helmet.
+	 *
+	 * @return integer
+	 */
+	public function getLevel() {
+		return $this->level;
+	}
+	
+	/**
+	 * Set weight of helmet.
+	 *
+	 * @param integer $weight        	
+	 * @return Helmet
+	 */
+	public function setWeight($weight) {
+		$this->weight = $weight;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get weight of helmet.
+	 *
+	 * @return integer
+	 */
+	public function getWeight() {
+		return $this->weight;
+	}
+	
+	/**
+	 *
+	 * Representation of helmet.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->name;
+	}
+}
+

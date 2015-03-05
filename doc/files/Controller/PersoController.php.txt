@@ -1,0 +1,522 @@
+<?php
+
+namespace IMIE\CraftingBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use IMIE\CraftingBundle\Entity\Perso;
+use IMIE\CraftingBundle\Form\PersoType;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\View;
+use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Controller\FOSRestController;
+
+/**
+ * Perso controller.
+ *
+ * @Route("/perso")
+ */
+class PersoController extends FOSRestController {
+	
+	/**
+	 * Lists all Perso entities.
+	 *
+	 * @Route("/", name="perso")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function indexAction() {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$entities = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findAll ();
+		
+		return array (
+				'entities' => $entities 
+		);
+	}
+	/**
+	 * Creates a new Perso entity.
+	 *
+	 * @Route("/", name="perso_create")
+	 * @Method("POST")
+	 * @Template("IMIECraftingBundle:Perso:new.html.twig")
+	 */
+	public function createAction(Request $request) {
+		$entity = new Perso ();
+		$form = $this->createCreateForm ( $entity );
+		$form->handleRequest ( $request );
+		
+		if ($form->isValid ()) {
+			$em = $this->getDoctrine ()->getManager ();
+			$em->persist ( $entity );
+			$em->flush ();
+			
+			return $this->redirect ( $this->generateUrl ( 'perso_show', array (
+					'id' => $entity->getId () 
+			) ) );
+		}
+		
+		return array (
+				'entity' => $entity,
+				'form' => $form->createView () 
+		);
+	}
+	
+	/**
+	 * Creates a form to create a Perso entity.
+	 *
+	 * @param Perso $entity
+	 *        	The entity
+	 *        	
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createCreateForm(Perso $entity) {
+		$form = $this->createForm ( new PersoType (), $entity, array (
+				'action' => $this->generateUrl ( 'perso_create' ),
+				'method' => 'POST' 
+		) );
+		
+		$form->add ( 'submit', 'submit', array (
+				'label' => 'Create' 
+		) );
+		
+		return $form;
+	}
+	
+	/**
+	 * Displays a form to create a new Perso entity.
+	 *
+	 * @Route("/new", name="perso_new")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function newAction() {
+		$entity = new Perso ();
+		$form = $this->createCreateForm ( $entity );
+		
+		return array (
+				'entity' => $entity,
+				'form' => $form->createView () 
+		);
+	}
+	
+	/**
+	 * Finds and displays a Perso entity.
+	 *
+	 * @Route("/{id}", name="perso_show")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function showAction($id) {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$entity = $em->getRepository ( 'IMIECraftingBundle:Perso' )->find ( $id );
+		
+		if (! $entity) {
+			throw $this->createNotFoundException ( 'Unable to find Perso entity.' );
+		}
+		
+		$deleteForm = $this->createDeleteForm ( $id );
+		
+		return array (
+				'entity' => $entity,
+				'delete_form' => $deleteForm->createView () 
+		);
+	}
+	
+	/**
+	 * Displays a form to edit an existing Perso entity.
+	 *
+	 * @Route("/{id}/edit", name="perso_edit")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	public function editAction($id) {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$entity = $em->getRepository ( 'IMIECraftingBundle:Perso' )->find ( $id );
+		
+		if (! $entity) {
+			throw $this->createNotFoundException ( 'Unable to find Perso entity.' );
+		}
+		
+		$editForm = $this->createEditForm ( $entity );
+		$deleteForm = $this->createDeleteForm ( $id );
+		
+		return array (
+				'entity' => $entity,
+				'edit_form' => $editForm->createView (),
+				'delete_form' => $deleteForm->createView () 
+		);
+	}
+	
+	/**
+	 * Creates a form to edit a Perso entity.
+	 *
+	 * @param Perso $entity
+	 *        	The entity
+	 *        	
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createEditForm(Perso $entity) {
+		$form = $this->createForm ( new PersoType (), $entity, array (
+				'action' => $this->generateUrl ( 'perso_update', array (
+						'id' => $entity->getId () 
+				) ),
+				'method' => 'PUT' 
+		) );
+		
+		$form->add ( 'submit', 'submit', array (
+				'label' => 'Update' 
+		) );
+		
+		return $form;
+	}
+	/**
+	 * Edits an existing Perso entity.
+	 *
+	 * @Route("/{id}", name="perso_update")
+	 * @Method("PUT")
+	 * @Template("IMIECraftingBundle:Perso:edit.html.twig")
+	 */
+	public function updateAction(Request $request, $id) {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$entity = $em->getRepository ( 'IMIECraftingBundle:Perso' )->find ( $id );
+		
+		if (! $entity) {
+			throw $this->createNotFoundException ( 'Unable to find Perso entity.' );
+		}
+		
+		$deleteForm = $this->createDeleteForm ( $id );
+		$editForm = $this->createEditForm ( $entity );
+		$editForm->handleRequest ( $request );
+		
+		if ($editForm->isValid ()) {
+			$em->flush ();
+			
+			return $this->redirect ( $this->generateUrl ( 'perso_edit', array (
+					'id' => $id 
+			) ) );
+		}
+		
+		return array (
+				'entity' => $entity,
+				'edit_form' => $editForm->createView (),
+				'delete_form' => $deleteForm->createView () 
+		);
+	}
+	/**
+	 * Deletes a Perso entity.
+	 *
+	 * @Route("/{id}", name="perso_delete")
+	 * @Method("DELETE")
+	 */
+	public function deleteAction(Request $request, $id) {
+		$form = $this->createDeleteForm ( $id );
+		$form->handleRequest ( $request );
+		
+		if ($form->isValid ()) {
+			$em = $this->getDoctrine ()->getManager ();
+			$entity = $em->getRepository ( 'IMIECraftingBundle:Perso' )->find ( $id );
+			
+			if (! $entity) {
+				throw $this->createNotFoundException ( 'Unable to find Perso entity.' );
+			}
+			
+			$em->remove ( $entity );
+			$em->flush ();
+		}
+		
+		return $this->redirect ( $this->generateUrl ( 'perso' ) );
+	}
+	
+	/**
+	 * Creates a form to delete a Perso entity by id.
+	 *
+	 * @param mixed $id
+	 *        	The entity id
+	 *        	
+	 * @return \Symfony\Component\Form\Form The form
+	 */
+	private function createDeleteForm($id) {
+		return $this->createFormBuilder ()->setAction ( $this->generateUrl ( 'perso_delete', array (
+				'id' => $id 
+		) ) )->setMethod ( 'DELETE' )->add ( 'submit', 'submit', array (
+				'label' => 'Delete' 
+		) )->getForm ();
+	}
+	
+	// /**
+	// * Get availalble Persos.
+	// *
+	// * @View()
+	// * @Get("/persos")
+	// * @ApiDoc
+	// */
+	// public function getPersosAction() {
+	// $em = $this->getDoctrine ()->getManager ();
+	// $persos = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findAll ();
+	// return array (
+	// 'persos' => $persos
+	// );
+	// }
+	
+	/**
+	 * Get availalble Persos.
+	 *
+	 * @Rest\Get("persos")
+	 * @ApiDoc (
+	 * section = "Perso Entity",
+	 * description = "Get all personnages in database"
+	 * )
+	 */
+	public function getPersosAction() {
+		$em = $this->getDoctrine ()->getManager ();
+		$persos = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findAll ();
+		$view = $this->view ( array (
+				"persos" => $persos 
+		), 200 );
+		return $this->handleView ( $view );
+	}
+	
+	/**
+	 * Get availalble Perso by Id.
+	 *
+	 * @Rest\Get("perso/{id}")
+	 * @ApiDoc (
+	 * section = "Perso Entity",
+	 * description = "get perso by id from database",
+	 * requirements = {
+	 * { "name" = "id", "dataType" = "int","description" = "Id of the personnage."}
+	 * }
+	 * )
+	 *
+	 * @param
+	 *        	integer Id of the perso instance
+	 */
+	public function getPersoByIdAction($id) {
+		$em = $this->getDoctrine ()->getManager ();
+		$perso = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findOneById ( $id );
+		if ($perso) {
+			$view = $this->view ( array (
+					"perso" => $perso 
+			), 200 );
+		} else {
+			$view = $this->view ( array (
+					"message" => "Empty data" 
+			), 204 );
+		}
+		
+		return $this->handleView ( $view );
+	}
+	
+	/**
+	 * Insert Perso.
+	 *
+	 * @Rest\Post("perso")
+	 * @ApiDoc (
+	 * section = "Perso Entity",
+	 * description = "insert perso in database",
+	 * requirements = {
+	 * {
+	 * "name" = "name",
+	 * "dataType" = "string",
+	 * "description" = "The name of the personnage."
+	 * },
+	 * {
+	 * "name" = "level",
+	 * "dataType" = "int",
+	 * "description" = "The level of the personnage."
+	 * },
+	 * {
+	 * "name" = "class",
+	 * "dataType" = "string",
+	 * "description" = "The class of the personnage."
+	 * },
+	 * {
+	 * "name" = "race",
+	 * "dataType" = "string",
+	 * "description" = "The race of the personnage."
+	 * },
+	 * {
+	 * "name" = "sexe",
+	 * "dataType" = "string",
+	 * "requirement" = "Homme|Femme",
+	 * "description" = "The sexe of the personnage."
+	 * },
+	 * {
+	 * "name" = "helmet",
+	 * "dataType" = "int",
+	 * "description" = "The helmet of the personnage."
+	 * },
+	 * {
+	 * "name" = "boot",
+	 * "dataType" = "int",
+	 * "description" = "The boot of the personnage."
+	 * },
+	 * {
+	 * "name" = "leg",
+	 * "dataType" = "int",
+	 * "description" = "The leg of the personnage."
+	 * },
+	 * {
+	 * "name" = "guild",
+	 * "dataType" = "int",
+	 * "description" = "The guild of the personnage."
+	 * }
+	 * },
+	 * statusCodes = {
+	 * 200 = "Return One successful.",
+	 * 406 = "Empty Data."
+	 * }
+	 * )
+	 */
+	public function postPersoAction() {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$json = json_decode ( $this->getRequest ()->getContent (), true );
+		
+		$perso = new Perso ();
+		$perso->setName ( $json ['name'] );
+		$perso->setLevel ( $json ['level'] );
+		$perso->setClass ( $json ['class'] );
+		$perso->setRace ( $json ['race'] );
+		$perso->setSexe ( $json ['sexe'] );
+		
+		$helmet = $em->getRepository ( 'IMIECraftingBundle:Helmet' )->findOneById ( $json ['helmet'] );
+		$boot = $em->getRepository ( 'IMIECraftingBundle:Boot' )->findOneById ( $json ['boot'] );
+		$leg = $em->getRepository ( 'IMIECraftingBundle:Leg' )->findOneById ( $json ['leg'] );
+		$guild = $em->getRepository ( 'IMIECraftingBundle:Guild' )->findOneById ( $json ['guild'] );
+		
+		$perso->setHelmet ( $helmet );
+		$perso->setBoot ( $boot );
+		$perso->setLeg ( $leg );
+		$perso->setGuild ( $guild );
+		
+		$em->persist ( $perso );
+		$em->flush ();
+		
+		if ($perso) {
+			$view = $this->view ( array (
+					"perso" => $perso 
+			), 200 );
+		} else {
+			$view = $this->view ( array (
+					"message" => "Insert error" 
+			), 406 );
+		}
+		
+		return $this->handleView ( $view );
+	}
+	
+	/**
+	 * Update Perso.
+	 *
+	 * @Rest\Put("perso")
+	 * @ApiDoc (
+	 * section = "Perso Entity",
+	 * description = "Update perso in database",
+	 * requirements = {
+	 * {
+	 * "name" = "id",
+	 * "dataType" = "int",
+	 * "description" = "The id of the personnage."
+	 * },
+	 * {
+	 * "name" = "name",
+	 * "dataType" = "string",
+	 * "description" = "The name of the personnage."
+	 * },
+	 * {
+	 * "name" = "level",
+	 * "dataType" = "int",
+	 * "description" = "The level of the personnage."
+	 * },
+	 * {
+	 * "name" = "class",
+	 * "dataType" = "string",
+	 * "description" = "The class of the personnage."
+	 * },
+	 * {
+	 * "name" = "race",
+	 * "dataType" = "string",
+	 * "description" = "The race of the personnage."
+	 * },
+	 * {
+	 * "name" = "sexe",
+	 * "dataType" = "string",
+	 * "requirement" = "Homme|Femme",
+	 * "description" = "The sexe of the personnage."
+	 * },
+	 * {
+	 * "name" = "helmet",
+	 * "dataType" = "int",
+	 * "description" = "The helmet of the personnage."
+	 * },
+	 * {
+	 * "name" = "boot",
+	 * "dataType" = "int",
+	 * "description" = "The boot of the personnage."
+	 * },
+	 * {
+	 * "name" = "leg",
+	 * "dataType" = "int",
+	 * "description" = "The leg of the personnage."
+	 * },
+	 * {
+	 * "name" = "guild",
+	 * "dataType" = "int",
+	 * "description" = "The guild of the personnage."
+	 * }
+	 * },
+	 * statusCodes = {
+	 * 200 = "Return One successful.",
+	 * 406 = "Empty Data."
+	 * }
+	 * )
+	 */
+	public function putPersoAction() {
+		$em = $this->getDoctrine ()->getManager ();
+		
+		$json = json_decode ( $this->getRequest ()->getContent (), true );
+		
+		$perso = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findOneById ( $json ['id']  );
+		$perso->setName ( $json ['name'] );
+		$perso->setLevel ( $json ['level'] );
+		$perso->setClass ( $json ['class'] );
+		$perso->setRace ( $json ['race'] );
+		$perso->setSexe ( $json ['sexe'] );
+		
+		$helmet = $em->getRepository ( 'IMIECraftingBundle:Helmet' )->findOneById ( $json ['helmet'] );
+		$boot = $em->getRepository ( 'IMIECraftingBundle:Boot' )->findOneById ( $json ['boot'] );
+		$leg = $em->getRepository ( 'IMIECraftingBundle:Leg' )->findOneById ( $json ['leg'] );
+		$guild = $em->getRepository ( 'IMIECraftingBundle:Guild' )->findOneById ( $json ['guild'] );
+		
+		$perso->setHelmet ( $helmet );
+		$perso->setBoot ( $boot );
+		$perso->setLeg ( $leg );
+		$perso->setGuild ( $guild );
+		
+		$em->persist ( $perso );
+		$em->flush ();
+		
+		if ($perso) {
+			$view = $this->view ( array (
+					"perso" => $perso 
+			), 200 );
+		} else {
+			$view = $this->view ( array (
+					"message" => "Insert error" 
+			), 406 );
+		}
+		
+		return $this->handleView ( $view );
+	}
+}
+

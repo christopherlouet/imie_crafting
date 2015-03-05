@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/IMIE.html">\IMIE</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">171</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1620767102"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1620767102" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1532506485"></a>
+                                <a href="../namespaces/IMIE.html" style="margin-left: 30px; padding-left: 0">IMIE</a>
+            </div>
+            <div id="namespace-1532506485" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-364718529"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.html" style="margin-left: 30px; padding-left: 0">CraftingBundle</a>
+            </div>
+            <div id="namespace-364718529" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-204379658"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-204379658" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.BootController.html">BootController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.ContactController.html">ContactController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.DefaultController.html">DefaultController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.GuildController.html">GuildController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.HelmetController.html">HelmetController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.LegController.html">LegController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.PersoController.html">PersoController</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Controller.RegisterController.html">RegisterController</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1716457476"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.DataFixtures.html" style="margin-left: 30px; padding-left: 0">DataFixtures</a>
+            </div>
+            <div id="namespace-1716457476" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1356964667"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.DataFixtures.ORM.html" style="margin-left: 30px; padding-left: 0">ORM</a>
+            </div>
+            <div id="namespace-1356964667" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.BootData.html">BootData</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.ContactData.html">ContactData</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.GuildData.html">GuildData</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.HelmetData.html">HelmetData</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.LegData.html">LegData</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.PersoData.html">PersoData</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DataFixtures.ORM.RegisterData.html">RegisterData</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1143454163"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.DependencyInjection.html" style="margin-left: 30px; padding-left: 0">DependencyInjection</a>
+            </div>
+            <div id="namespace-1143454163" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DependencyInjection.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.DependencyInjection.IMIECraftingExtension.html">IMIECraftingExtension</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-346780808"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.Entity.html" style="margin-left: 30px; padding-left: 0">Entity</a>
+            </div>
+            <div id="namespace-346780808" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Boot.html">Boot</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Contact.html">Contact</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Guild.html">Guild</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Helmet.html">Helmet</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Leg.html">Leg</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Perso.html">Perso</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Entity.Register.html">Register</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-165187038"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.Form.html" style="margin-left: 30px; padding-left: 0">Form</a>
+            </div>
+            <div id="namespace-165187038" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.BootType.html">BootType</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.ContactType.html">ContactType</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.GuildType.html">GuildType</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.HelmetType.html">HelmetType</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.LegType.html">LegType</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.PersoType.html">PersoType</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Form.RegisterType.html">RegisterType</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1580518299"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.Tests.html" style="margin-left: 30px; padding-left: 0">Tests</a>
+            </div>
+            <div id="namespace-1580518299" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-265466885"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.Tests.Controller.html" style="margin-left: 30px; padding-left: 0">Controller</a>
+            </div>
+            <div id="namespace-265466885" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.BootControllerTest.html">BootControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.ContactControllerTest.html">ContactControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.GuildControllerTest.html">GuildControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.HelmetControllerTest.html">HelmetControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.LegControllerTest.html">LegControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.PersoControllerTest.html">PersoControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Controller.RegisterControllerTest.html">RegisterControllerTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1254842256"></a>
+                                <a href="../namespaces/IMIE.CraftingBundle.Tests.Repository.html" style="margin-left: 30px; padding-left: 0">Repository</a>
+            </div>
+            <div id="namespace-1254842256" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.Tests.Repository.BootDbTest.html">BootDbTest</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/IMIE.CraftingBundle.IMIECraftingBundle.html">IMIECraftingBundle</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/IMIE.CraftingBundle.Entity.html">\IMIE\CraftingBundle\Entity</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\IMIE\CraftingBundle\Entity</small>Register</h1>
+                    <p><em>Register class.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_getId" class="">getId()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_setLevel" class="">setLevel()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_getLevel" class="">getLevel()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_setRang" class="">setRang()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_getRang" class="">getRang()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_setPerso" class="">setPerso()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_getPerso" class="">getPerso()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_setGuild" class="">setGuild()</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#method_getGuild" class="">getGuild()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#property_id" class="">$id</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#property_level" class="">$level</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#property_rang" class="">$rang</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#property_perso" class="">$perso</a><br />
+                                                                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html#property_guild" class="">$guild</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Entity.Register.html"><div class="path-wrapper">Entity/Register.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\IMIE\CraftingBundle\Entity\Register</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                ORM\Table
+                            </th>
+                            <td>
+                                                                    <p>(name=&quot;Register&quot;, indexes={@ORM\Index(name=&quot;fk_Register_Guild_Perso_Perso1_idx&quot;, columns={&quot;perso_id&quot;}), @ORM\Index(name=&quot;fk_Register_Guild_Perso_Guild1_idx&quot;, columns={&quot;guild_id&quot;})})</p>
+                                                            </td>
+                        </tr>
+                                            <tr>
+                            <th>
+                                ORM\Entity
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_id" name="property_id" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$id</h3>
+                <pre class="signature">$id : integer</pre>
+                <p><em>Id of register.</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; @ORM\Column(name=&quot;id&quot;, type=&quot;integer&quot;, nullable=false)
+     @ORM\Id
+     @ORM\GeneratedValue(strategy=&quot;IDENTITY&quot;)                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_level" name="property_level" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$level</h3>
+                <pre class="signature">$level : integer</pre>
+                <p><em>Level of register.</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; @ORM\Column(name=&quot;level&quot;, type=&quot;integer&quot;, nullable=false)                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_rang" name="property_rang" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$rang</h3>
+                <pre class="signature">$rang : integer</pre>
+                <p><em>Rang of register.</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; @ORM\Column(name=&quot;rang&quot;, type=&quot;integer&quot;, nullable=false)                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_perso" name="property_perso" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$perso</h3>
+                <pre class="signature">$perso : \Perso</pre>
+                <p><em>Perso of register.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Perso
+                &mdash; @ORM\ManyToOne(targetEntity=&quot;Perso&quot;)
+     @ORM\JoinColumns({
+     @ORM\JoinColumn(name=&quot;perso_id&quot;, referencedColumnName=&quot;id&quot;)
+     })                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_guild" name="property_guild" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$guild</h3>
+                <pre class="signature">$guild : \Guild</pre>
+                <p><em>Guild of register.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Guild
+                &mdash; @ORM\ManyToOne(targetEntity=&quot;Guild&quot;)
+     @ORM\JoinColumns({
+     @ORM\JoinColumn(name=&quot;guild_id&quot;, referencedColumnName=&quot;id&quot;)
+     })                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getId" name="method_getId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getId() : integer</pre>
+                <p><em>Get id of register.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLevel" name="method_setLevel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLevel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLevel(integer  <span class="argument">$level</span>) : \IMIE\CraftingBundle\Entity\Register</pre>
+                <p><em>Set level of register.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$level </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html">\IMIE\CraftingBundle\Entity\Register</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLevel" name="method_getLevel" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLevel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLevel() : integer</pre>
+                <p><em>Get level of register.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRang" name="method_setRang" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setRang()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRang(integer  <span class="argument">$rang</span>) : \IMIE\CraftingBundle\Entity\Register</pre>
+                <p><em>Set rang of register.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$rang </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html">\IMIE\CraftingBundle\Entity\Register</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRang" name="method_getRang" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRang()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRang() : integer</pre>
+                <p><em>Get rang of register.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPerso" name="method_setPerso" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPerso()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPerso(\IMIE\CraftingBundle\Entity\Perso  <span class="argument">$perso = null</span>) : \IMIE\CraftingBundle\Entity\Register</pre>
+                <p><em>Set perso of register.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/IMIE.CraftingBundle.Entity.Perso.html">\IMIE\CraftingBundle\Entity\Perso</a></td>
+                                <td>$perso </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html">\IMIE\CraftingBundle\Entity\Register</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPerso" name="method_getPerso" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getPerso()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPerso() : \IMIE\CraftingBundle\Entity\Perso</pre>
+                <p><em>Get perso of register.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/IMIE.CraftingBundle.Entity.Perso.html">\IMIE\CraftingBundle\Entity\Perso</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setGuild" name="method_setGuild" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setGuild()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setGuild(\IMIE\CraftingBundle\Entity\Guild  <span class="argument">$guild = null</span>) : \IMIE\CraftingBundle\Entity\Register</pre>
+                <p><em>Set guild of register.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/IMIE.CraftingBundle.Entity.Guild.html">\IMIE\CraftingBundle\Entity\Guild</a></td>
+                                <td>$guild </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/IMIE.CraftingBundle.Entity.Register.html">\IMIE\CraftingBundle\Entity\Register</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getGuild" name="method_getGuild" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getGuild()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getGuild() : \IMIE\CraftingBundle\Entity\Guild</pre>
+                <p><em>Get guild of register.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/IMIE.CraftingBundle.Entity.Guild.html">\IMIE\CraftingBundle\Entity\Guild</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Register.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Entity/Register.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/IMIE.html">\IMIE</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on March 5th, 2015 at 23:00.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

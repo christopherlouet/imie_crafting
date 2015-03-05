@@ -1,0 +1,158 @@
+<?php
+
+/**
+ * Boot entity.
+ *
+ */
+namespace IMIE\CraftingBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Boot class.
+ *
+ * @ORM\Table(name="Boot")
+ * @ORM\Entity
+ */
+class Boot {
+	/**
+	 * Id of boot.
+	 *
+	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
+	 *      @ORM\Id
+	 *      @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
+	private $id;
+	
+	/**
+	 * Name of boot.
+	 *
+	 * @var string @ORM\Column(name="name", type="string", length=45, nullable=false)
+	 */
+	private $name;
+	
+	/**
+	 * Rarity of boot.
+	 *
+	 * @var integer @ORM\Column(name="rarity", type="integer", nullable=false)
+	 */
+	private $rarity;
+	
+	/**
+	 * Level of boot.
+	 *
+	 * @var integer @ORM\Column(name="level", type="integer", nullable=false)
+	 */
+	private $level;
+	
+	/**
+	 * Weight of boot.
+	 *
+	 * @var integer @ORM\Column(name="weight", type="integer", nullable=false)
+	 */
+	private $weight;
+	
+	/**
+	 * Get id of boot.
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 * Set name of boot.
+	 *
+	 * @param string $name        	
+	 * @return Boot
+	 */
+	public function setName($name) {
+		$this->name = $name;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get name of boot.
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+	
+	/**
+	 * Set rarity of boot.
+	 *
+	 * @param integer $rarity        	
+	 * @return Boot
+	 */
+	public function setRarity($rarity) {
+		$this->rarity = $rarity;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get rarity of boot.
+	 *
+	 * @return integer
+	 */
+	public function getRarity() {
+		return $this->rarity;
+	}
+	
+	/**
+	 * Set level of boot.
+	 *
+	 * @param integer $level        	
+	 * @return Boot
+	 */
+	public function setLevel($level) {
+		$this->level = $level;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get level of boot.
+	 *
+	 * @return integer
+	 */
+	public function getLevel() {
+		return $this->level;
+	}
+	
+	/**
+	 * Set weight of boot.
+	 *
+	 * @param integer $weight        	
+	 * @return Boot
+	 */
+	public function setWeight($weight) {
+		$this->weight = $weight;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get weight of boot.
+	 *
+	 * @return integer
+	 */
+	public function getWeight() {
+		return $this->weight;
+	}
+	
+	/**
+	 *
+	 * Representation of boot.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->name;
+	}
+}
+

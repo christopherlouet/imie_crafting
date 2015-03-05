@@ -1,17 +1,22 @@
 <?php
 
+/**
+ * Perso entity.
+ *
+ */
 namespace IMIE\CraftingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Perso.
+ * Perso class.
  *
  * @ORM\Table(name="Perso", indexes={@ORM\Index(name="fk_Perso_Helmet1_idx", columns={"Helmet_id"}), @ORM\Index(name="fk_Perso_Boot1_idx", columns={"Boot_id"}), @ORM\Index(name="fk_Perso_Leg1_idx", columns={"Leg_id"}), @ORM\Index(name="fk_Perso_Guild1_idx", columns={"Guild_id"})})
  * @ORM\Entity
  */
 class Perso {
 	/**
+	 * Id of perso.
 	 *
 	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
 	 *      @ORM\Id
@@ -20,36 +25,42 @@ class Perso {
 	private $id;
 	
 	/**
+	 * Name of perso.
 	 *
 	 * @var string @ORM\Column(name="name", type="string", length=255, nullable=false)
 	 */
 	private $name;
 	
 	/**
+	 * Level of perso.
 	 *
 	 * @var integer @ORM\Column(name="level", type="integer", nullable=false)
 	 */
 	private $level;
 	
 	/**
+	 * Class of perso.
 	 *
 	 * @var string @ORM\Column(name="class", type="string", length=45, nullable=false)
 	 */
 	private $class;
 	
 	/**
+	 * Race of perso.
 	 *
 	 * @var string @ORM\Column(name="race", type="string", length=45, nullable=false)
 	 */
 	private $race;
 	
 	/**
+	 * Sexe of perso.
 	 *
 	 * @var string @ORM\Column(name="sexe", type="string", length=45, nullable=false)
 	 */
 	private $sexe;
 	
 	/**
+	 * Helmet of perso.
 	 *
 	 * @var \Helmet @ORM\ManyToOne(targetEntity="Helmet")
 	 *      @ORM\JoinColumns({
@@ -59,6 +70,7 @@ class Perso {
 	private $helmet;
 	
 	/**
+	 * Boot of perso.
 	 *
 	 * @var \Boot @ORM\ManyToOne(targetEntity="Boot")
 	 *      @ORM\JoinColumns({
@@ -68,6 +80,7 @@ class Perso {
 	private $boot;
 	
 	/**
+	 * Leg of perso.
 	 *
 	 * @var \Leg @ORM\ManyToOne(targetEntity="Leg")
 	 *      @ORM\JoinColumns({
@@ -77,6 +90,7 @@ class Perso {
 	private $leg;
 	
 	/**
+	 * Guild of perso.
 	 *
 	 * @var \Guild @ORM\ManyToOne(targetEntity="Guild")
 	 *      @ORM\JoinColumns({
@@ -86,7 +100,7 @@ class Perso {
 	private $guild;
 	
 	/**
-	 * Get id.
+	 * Get id of perso.
 	 *
 	 * @return integer
 	 */
@@ -95,7 +109,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set name.
+	 * Set name of perso.
 	 *
 	 * @param string $name        	
 	 * @return Perso
@@ -107,7 +121,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get name.
+	 * Get name of perso.
 	 *
 	 * @return string
 	 */
@@ -116,7 +130,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set level.
+	 * Set level of perso.
 	 *
 	 * @param integer $level        	
 	 * @return Perso
@@ -128,7 +142,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get level.
+	 * Get level of perso.
 	 *
 	 * @return integer
 	 */
@@ -137,7 +151,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set class.
+	 * Set class of perso.
 	 *
 	 * @param string $class        	
 	 * @return Perso
@@ -149,7 +163,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get class.
+	 * Get class of perso.
 	 *
 	 * @return string
 	 */
@@ -158,7 +172,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set race.
+	 * Set race of perso.
 	 *
 	 * @param string $race        	
 	 * @return Perso
@@ -170,7 +184,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get race.
+	 * Get race of perso.
 	 *
 	 * @return string
 	 */
@@ -179,7 +193,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set sexe.
+	 * Set sexe of perso.
 	 *
 	 * @param string $sexe        	
 	 * @return Perso
@@ -191,7 +205,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get sexe.
+	 * Get sexe of perso.
 	 *
 	 * @return string
 	 */
@@ -200,7 +214,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set helmet.
+	 * Set helmet of perso.
 	 *
 	 * @param \IMIE\CraftingBundle\Entity\Helmet $helmet        	
 	 * @return Perso
@@ -212,7 +226,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get helmet.
+	 * Get helmet of perso.
 	 *
 	 * @return \IMIE\CraftingBundle\Entity\Helmet
 	 */
@@ -221,7 +235,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set boot.
+	 * Set boot of perso.
 	 *
 	 * @param \IMIE\CraftingBundle\Entity\Boot $boot        	
 	 * @return Perso
@@ -233,7 +247,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get boot.
+	 * Get boot of perso.
 	 *
 	 * @return \IMIE\CraftingBundle\Entity\Boot
 	 */
@@ -242,7 +256,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set leg.
+	 * Set leg of perso.
 	 *
 	 * @param \IMIE\CraftingBundle\Entity\Leg $leg        	
 	 * @return Perso
@@ -254,7 +268,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get leg.
+	 * Get leg of perso.
 	 *
 	 * @return \IMIE\CraftingBundle\Entity\Leg
 	 */
@@ -263,7 +277,7 @@ class Perso {
 	}
 	
 	/**
-	 * Set guild.
+	 * Set guild of perso.
 	 *
 	 * @param \IMIE\CraftingBundle\Entity\Guild $guild        	
 	 * @return Perso
@@ -275,7 +289,7 @@ class Perso {
 	}
 	
 	/**
-	 * Get guild.
+	 * Get guild of perso.
 	 *
 	 * @return \IMIE\CraftingBundle\Entity\Guild
 	 */
@@ -285,7 +299,7 @@ class Perso {
 	
 	/**
 	 *
-	 * Representation of a perso.
+	 * Representation of perso.
 	 *
 	 * @return string
 	 */

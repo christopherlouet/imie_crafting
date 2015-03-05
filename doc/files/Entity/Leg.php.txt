@@ -1,0 +1,159 @@
+<?php
+
+/**
+ * Leg entity.
+ *
+ */
+
+namespace IMIE\CraftingBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Leg class.
+ *
+ * @ORM\Table(name="Leg")
+ * @ORM\Entity
+ */
+class Leg {
+	/**
+	 * Id of leg.
+	 *
+	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
+	 *      @ORM\Id
+	 *      @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
+	private $id;
+	
+	/**
+	 * Name of leg.
+	 *
+	 * @var string @ORM\Column(name="name", type="string", length=45, nullable=false)
+	 */
+	private $name;
+	
+	/**
+	 * Rarity of leg.
+	 *
+	 * @var integer @ORM\Column(name="rarity", type="integer", nullable=false)
+	 */
+	private $rarity;
+	
+	/**
+	 * Level of leg.
+	 *
+	 * @var integer @ORM\Column(name="level", type="integer", nullable=false)
+	 */
+	private $level;
+	
+	/**
+	 * Weight of leg.
+	 *
+	 * @var integer @ORM\Column(name="weight", type="integer", nullable=false)
+	 */
+	private $weight;
+	
+	/**
+	 * Get id of leg.
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
+	
+	/**
+	 * Set name of leg.
+	 *
+	 * @param string $name        	
+	 * @return Leg
+	 */
+	public function setName($name) {
+		$this->name = $name;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get name of leg.
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->name;
+	}
+	
+	/**
+	 * Set rarity of leg.
+	 *
+	 * @param integer $rarity        	
+	 * @return Leg
+	 */
+	public function setRarity($rarity) {
+		$this->rarity = $rarity;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get rarity of leg.
+	 *
+	 * @return integer
+	 */
+	public function getRarity() {
+		return $this->rarity;
+	}
+	
+	/**
+	 * Set level of leg.
+	 *
+	 * @param integer $level        	
+	 * @return Leg
+	 */
+	public function setLevel($level) {
+		$this->level = $level;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get level of leg.
+	 *
+	 * @return integer
+	 */
+	public function getLevel() {
+		return $this->level;
+	}
+	
+	/**
+	 * Set weight of leg.
+	 *
+	 * @param integer $weight        	
+	 * @return Leg
+	 */
+	public function setWeight($weight) {
+		$this->weight = $weight;
+		
+		return $this;
+	}
+	
+	/**
+	 * Get weight of leg.
+	 *
+	 * @return integer
+	 */
+	public function getWeight() {
+		return $this->weight;
+	}
+	
+	/**
+	 *
+	 * Representation of leg.
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->name;
+	}
+}
+

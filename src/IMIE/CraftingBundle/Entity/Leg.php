@@ -1,17 +1,23 @@
 <?php
 
+/**
+ * Leg entity.
+ *
+ */
+
 namespace IMIE\CraftingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Leg
+ * Leg class.
  *
  * @ORM\Table(name="Leg")
  * @ORM\Entity
  */
 class Leg {
 	/**
+	 * Id of leg.
 	 *
 	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
 	 *      @ORM\Id
@@ -20,31 +26,35 @@ class Leg {
 	private $id;
 	
 	/**
+	 * Name of leg.
 	 *
 	 * @var string @ORM\Column(name="name", type="string", length=45, nullable=false)
 	 */
 	private $name;
 	
 	/**
+	 * Rarity of leg.
 	 *
 	 * @var integer @ORM\Column(name="rarity", type="integer", nullable=false)
 	 */
 	private $rarity;
 	
 	/**
+	 * Level of leg.
 	 *
 	 * @var integer @ORM\Column(name="level", type="integer", nullable=false)
 	 */
 	private $level;
 	
 	/**
+	 * Weight of leg.
 	 *
 	 * @var integer @ORM\Column(name="weight", type="integer", nullable=false)
 	 */
 	private $weight;
 	
 	/**
-	 * Get id
+	 * Get id of leg.
 	 *
 	 * @return integer
 	 */
@@ -53,7 +63,7 @@ class Leg {
 	}
 	
 	/**
-	 * Set name
+	 * Set name of leg.
 	 *
 	 * @param string $name        	
 	 * @return Leg
@@ -65,7 +75,7 @@ class Leg {
 	}
 	
 	/**
-	 * Get name
+	 * Get name of leg.
 	 *
 	 * @return string
 	 */
@@ -74,7 +84,7 @@ class Leg {
 	}
 	
 	/**
-	 * Set rarity
+	 * Set rarity of leg.
 	 *
 	 * @param integer $rarity        	
 	 * @return Leg
@@ -86,7 +96,7 @@ class Leg {
 	}
 	
 	/**
-	 * Get rarity
+	 * Get rarity of leg.
 	 *
 	 * @return integer
 	 */
@@ -95,7 +105,7 @@ class Leg {
 	}
 	
 	/**
-	 * Set level
+	 * Set level of leg.
 	 *
 	 * @param integer $level        	
 	 * @return Leg
@@ -107,7 +117,7 @@ class Leg {
 	}
 	
 	/**
-	 * Get level
+	 * Get level of leg.
 	 *
 	 * @return integer
 	 */
@@ -116,7 +126,7 @@ class Leg {
 	}
 	
 	/**
-	 * Set weight
+	 * Set weight of leg.
 	 *
 	 * @param integer $weight        	
 	 * @return Leg
@@ -128,7 +138,7 @@ class Leg {
 	}
 	
 	/**
-	 * Get weight
+	 * Get weight of leg.
 	 *
 	 * @return integer
 	 */
@@ -138,7 +148,7 @@ class Leg {
 	
 	/**
 	 *
-	 * Representation of a leg.
+	 * Representation of leg.
 	 *
 	 * @return string
 	 */

@@ -1,17 +1,22 @@
 <?php
 
+/**
+ * Helmet entity.
+ *
+ */
 namespace IMIE\CraftingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Helmet
+ * Helmet class.
  *
  * @ORM\Table(name="Helmet")
  * @ORM\Entity
  */
 class Helmet {
 	/**
+	 * Id of helmet.
 	 *
 	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
 	 *      @ORM\Id
@@ -20,31 +25,35 @@ class Helmet {
 	private $id;
 	
 	/**
+	 * Name of helmet.
 	 *
 	 * @var string @ORM\Column(name="name", type="string", length=45, nullable=false)
 	 */
 	private $name;
 	
 	/**
+	 * Rarity of helmet.
 	 *
 	 * @var integer @ORM\Column(name="rarity", type="integer", nullable=false)
 	 */
 	private $rarity;
 	
 	/**
+	 * Level of helmet.
 	 *
 	 * @var integer @ORM\Column(name="level", type="integer", nullable=false)
 	 */
 	private $level;
 	
 	/**
+	 * Weight of helmet.
 	 *
 	 * @var integer @ORM\Column(name="weight", type="integer", nullable=false)
 	 */
 	private $weight;
 	
 	/**
-	 * Get id
+	 * Get id of helmet.
 	 *
 	 * @return integer
 	 */
@@ -53,7 +62,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Set name
+	 * Set name of helmet.
 	 *
 	 * @param string $name        	
 	 * @return Helmet
@@ -65,7 +74,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Get name
+	 * Get name of helmet.
 	 *
 	 * @return string
 	 */
@@ -74,7 +83,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Set rarity
+	 * Set rarity of helmet.
 	 *
 	 * @param integer $rarity        	
 	 * @return Helmet
@@ -86,7 +95,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Get rarity
+	 * Get rarity of helmet.
 	 *
 	 * @return integer
 	 */
@@ -95,7 +104,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Set level
+	 * Set level of helmet.
 	 *
 	 * @param integer $level        	
 	 * @return Helmet
@@ -107,7 +116,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Get level
+	 * Get level of helmet.
 	 *
 	 * @return integer
 	 */
@@ -116,7 +125,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Set weight
+	 * Set weight of helmet.
 	 *
 	 * @param integer $weight        	
 	 * @return Helmet
@@ -128,7 +137,7 @@ class Helmet {
 	}
 	
 	/**
-	 * Get weight
+	 * Get weight of helmet.
 	 *
 	 * @return integer
 	 */
@@ -138,7 +147,7 @@ class Helmet {
 	
 	/**
 	 *
-	 * Representation of a helmet.
+	 * Representation of helmet.
 	 *
 	 * @return string
 	 */

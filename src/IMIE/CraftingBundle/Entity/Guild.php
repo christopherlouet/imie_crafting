@@ -1,17 +1,23 @@
 <?php
 
+/**
+ * Guild entity.
+ *
+ */
+
 namespace IMIE\CraftingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Guild
+ * Guild class.
  *
  * @ORM\Table(name="Guild")
  * @ORM\Entity
  */
 class Guild {
 	/**
+	 * Id of guild.
 	 *
 	 * @var integer @ORM\Column(name="id", type="integer", nullable=false)
 	 *      @ORM\Id
@@ -20,19 +26,21 @@ class Guild {
 	private $id;
 	
 	/**
+	 * Name of guild.
 	 *
 	 * @var string @ORM\Column(name="name", type="string", length=45, nullable=false)
 	 */
 	private $name;
 	
 	/**
+	 * Banner of guild.
 	 *
 	 * @var string @ORM\Column(name="banner", type="string", length=45, nullable=false)
 	 */
 	private $banner;
 	
 	/**
-	 * Get id
+	 * Get id of guild.
 	 *
 	 * @return integer
 	 */
@@ -41,7 +49,7 @@ class Guild {
 	}
 	
 	/**
-	 * Set name
+	 * Set name of guild.
 	 *
 	 * @param string $name        	
 	 * @return Guild
@@ -53,7 +61,7 @@ class Guild {
 	}
 	
 	/**
-	 * Get name
+	 * Get name of guild.
 	 *
 	 * @return string
 	 */
@@ -62,7 +70,7 @@ class Guild {
 	}
 	
 	/**
-	 * Set banner
+	 * Set banner of guild.
 	 *
 	 * @param string $banner        	
 	 * @return Guild
@@ -74,7 +82,7 @@ class Guild {
 	}
 	
 	/**
-	 * Get banner
+	 * Get banner of guild.
 	 *
 	 * @return string
 	 */
@@ -84,7 +92,7 @@ class Guild {
 	
 	/**
 	 *
-	 * Representation of a guild.
+	 * Representation of guild.
 	 *
 	 * @return string
 	 */
