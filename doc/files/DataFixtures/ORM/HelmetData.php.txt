@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Helmet data fixtures.
+ */
 namespace IMIE\CraftingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -8,7 +11,21 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use IMIE\CraftingBundle\Entity\Helmet;
 use Faker;
 
+/**
+ * HelmetData class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class HelmetData extends AbstractFixture implements OrderedFixtureInterface {
+	
+	/**
+	 * Load data fixtures.
+	 *
+	 * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
+	 *
+	 * @param ObjectManager $em        	
+	 */
 	public function load(ObjectManager $em) {
 		$faker = Faker\Factory::create ();
 		
@@ -28,7 +45,7 @@ class HelmetData extends AbstractFixture implements OrderedFixtureInterface {
 				'name' => 'DataFixtureHelmet2',
 				'rarity' => $faker->numberBetween ( 1, 10 ),
 				'level' => $faker->numberBetween ( 1, 50 ),
-				'weight' => $faker->numberBetween ( 1, 20 )
+				'weight' => $faker->numberBetween ( 1, 20 ) 
 		);
 		
 		for($i = 1; $i <= 50; $i ++) {
@@ -43,6 +60,13 @@ class HelmetData extends AbstractFixture implements OrderedFixtureInterface {
 		
 		$this->addHelmets ( $em, $params );
 	}
+	
+	/**
+	 * Add helmets in database.
+	 *
+	 * @param ObjectManager $em        	
+	 * @param array $params        	
+	 */
 	private function addHelmets($em, $params) {
 		foreach ( $params as $param ) {
 			$entity = new Helmet ();
@@ -57,6 +81,12 @@ class HelmetData extends AbstractFixture implements OrderedFixtureInterface {
 			$this->addReference ( $param ['tag'], $entity );
 		}
 	}
+	
+	/**
+	 * Loading order.
+	 *
+	 * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
+	 */
 	public function getOrder() {
 		return 1;
 	}

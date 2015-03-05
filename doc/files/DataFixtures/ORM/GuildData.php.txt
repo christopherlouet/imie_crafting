@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Guild data fixtures.
+ */
 namespace IMIE\CraftingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -8,7 +11,21 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use IMIE\CraftingBundle\Entity\Guild;
 use Faker;
 
+/**
+ * GuildData class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class GuildData extends AbstractFixture implements OrderedFixtureInterface {
+	
+	/**
+	 * Load data fixtures.
+	 *
+	 * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
+	 *
+	 * @param ObjectManager $em        	
+	 */
 	public function load(ObjectManager $em) {
 		$faker = Faker\Factory::create ();
 		$params = array ();
@@ -36,6 +53,13 @@ class GuildData extends AbstractFixture implements OrderedFixtureInterface {
 		
 		$this->addGuilds ( $em, $params );
 	}
+	
+	/**
+	 * Add guilds in database.
+	 *
+	 * @param ObjectManager $em        	
+	 * @param array $params        	
+	 */
 	private function addGuilds($em, $params) {
 		foreach ( $params as $param ) {
 			$entity = new Guild ();
@@ -48,6 +72,12 @@ class GuildData extends AbstractFixture implements OrderedFixtureInterface {
 			$this->addReference ( $param ['tag'], $entity );
 		}
 	}
+	
+	/**
+	 * Loading order.
+	 *
+	 * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
+	 */
 	public function getOrder() {
 		return 5;
 	}

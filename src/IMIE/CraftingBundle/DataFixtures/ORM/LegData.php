@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Leg data fixtures.
+ */
 namespace IMIE\CraftingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -8,7 +11,21 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use IMIE\CraftingBundle\Entity\Leg;
 use Faker;
 
+/**
+ * LegData class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class LegData extends AbstractFixture implements OrderedFixtureInterface {
+	
+	/**
+	 * Load data fixtures.
+	 *
+	 * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
+	 *
+	 * @param ObjectManager $em        	
+	 */
 	public function load(ObjectManager $em) {
 		$faker = Faker\Factory::create ();
 		
@@ -42,6 +59,13 @@ class LegData extends AbstractFixture implements OrderedFixtureInterface {
 		}
 		$this->addlegs ( $em, $params );
 	}
+	
+	/**
+	 * Add legs in database.
+	 *
+	 * @param ObjectManager $em        	
+	 * @param array $params        	
+	 */
 	private function addlegs($em, $params) {
 		foreach ( $params as $param ) {
 			$entity = new Leg ();
@@ -56,6 +80,12 @@ class LegData extends AbstractFixture implements OrderedFixtureInterface {
 			$this->addReference ( $param ['tag'], $entity );
 		}
 	}
+	
+	/**
+	 * Loading order.
+	 *
+	 * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
+	 */
 	public function getOrder() {
 		return 1;
 	}

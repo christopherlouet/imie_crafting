@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Persos data fixtures.
+ */
 namespace IMIE\CraftingBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -9,7 +12,7 @@ use IMIE\CraftingBundle\Entity\Perso;
 use Faker;
 
 /**
- * Perso DataFixtures.
+ * PersoData class.
  *
  * @author Christopher LOUËT <christopher.louet@yahoo.com>
  *        
@@ -17,9 +20,11 @@ use Faker;
 class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 	
 	/**
-	 * Load DataFixtures.
+	 * Load data fixtures.
 	 *
 	 * @see \Doctrine\Common\DataFixtures\FixtureInterface::load()
+	 *
+	 * @param ObjectManager $em        	
 	 */
 	public function load(ObjectManager $em) {
 		
@@ -37,21 +42,21 @@ class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 						'Commando',
 						'Contrebandier',
 						'Consulaire',
-						'Ombre'
+						'Ombre' 
 				) ),
 				'race' => $faker->randomElement ( array (
 						'Humain',
 						'Twilek',
-						'Sith'
+						'Sith' 
 				) ),
 				'sexe' => $faker->randomElement ( array (
 						'Homme',
-						'Femmme'
+						'Femmme' 
 				) ),
 				'helmet' => 'helmet-helmet' . $faker->numberBetween ( 1, 50 ),
 				'boot' => 'boot-boot' . $faker->numberBetween ( 1, 50 ),
 				'leg' => 'leg-leg' . $faker->numberBetween ( 1, 50 ),
-				'guild' => 'guild-guild' . $faker->numberBetween ( 1, 50 )
+				'guild' => 'guild-guild' . $faker->numberBetween ( 1, 50 ) 
 		);
 		
 		$params [] = array (
@@ -63,21 +68,21 @@ class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 						'Commando',
 						'Contrebandier',
 						'Consulaire',
-						'Ombre'
+						'Ombre' 
 				) ),
 				'race' => $faker->randomElement ( array (
 						'Humain',
 						'Twilek',
-						'Sith'
+						'Sith' 
 				) ),
 				'sexe' => $faker->randomElement ( array (
 						'Homme',
-						'Femmme'
+						'Femmme' 
 				) ),
 				'helmet' => 'helmet-helmet' . $faker->numberBetween ( 1, 50 ),
 				'boot' => 'boot-boot' . $faker->numberBetween ( 1, 50 ),
 				'leg' => 'leg-leg' . $faker->numberBetween ( 1, 50 ),
-				'guild' => 'guild-guild' . $faker->numberBetween ( 1, 50 )
+				'guild' => 'guild-guild' . $faker->numberBetween ( 1, 50 ) 
 		);
 		
 		for($i = 1; $i <= 50; $i ++) {
@@ -114,10 +119,10 @@ class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 	}
 	
 	/**
-	 * Add perso in database.
+	 * Add persos in database.
 	 *
-	 * @param unknown $em        	
-	 * @param unknown $params        	
+	 * @param ObjectManager $em        	
+	 * @param array $params        	
 	 */
 	private function addpersos($em, $params) {
 		
@@ -142,8 +147,7 @@ class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 	}
 	
 	/**
-	 *
-	 * Order of the DataFixture.
+	 * Loading order.
 	 *
 	 * @see \Doctrine\Common\DataFixtures\OrderedFixtureInterface::getOrder()
 	 */
