@@ -29,8 +29,8 @@ class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 		
 		// Personnalize DataFixtures for test
 		$params [] = array (
-				'tag' => 'perso-test1',
-				'name' => 'Test1',
+				'tag' => 'perso-dfperso1',
+				'name' => 'DataFixturePerso1',
 				'level' => $faker->numberBetween ( 1, 100 ),
 				'class' => $faker->randomElement ( array (
 						'avant garde',
@@ -55,8 +55,8 @@ class PersoData extends AbstractFixture implements OrderedFixtureInterface {
 		);
 		
 		$params [] = array (
-				'tag' => 'perso-test2',
-				'name' => 'Test2',
+				'tag' => 'perso-dfperso2',
+				'name' => 'DataFixturePerso2',
 				'level' => $faker->numberBetween ( 1, 100 ),
 				'class' => $faker->randomElement ( array (
 						'avant garde',

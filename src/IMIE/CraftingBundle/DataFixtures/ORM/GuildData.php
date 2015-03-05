@@ -10,15 +10,27 @@ use Faker;
 
 class GuildData extends AbstractFixture implements OrderedFixtureInterface {
 	public function load(ObjectManager $em) {
-		
 		$faker = Faker\Factory::create ();
 		$params = array ();
 		
+		// Personnalize DataFixtures for test
+		$params [] = array (
+				'tag' => 'guild-dfguild1',
+				'name' => "DataFixtureGuild1",
+				'banner' => $faker->url () 
+		);
+		
+		$params [] = array (
+				'tag' => 'guild-dfguild2',
+				'name' => "DataFixtureGuild2",
+				'banner' => $faker->url () 
+		);
+		
 		for($i = 1; $i <= 50; $i ++) {
 			$params [] = array (
-					'tag' => 'guild-guild'.$i,
-					'name' => $faker->name(),
-					'banner' => $faker->url() 
+					'tag' => 'guild-guild' . $i,
+					'name' => $faker->company,
+					'banner' => $faker->url () 
 			);
 		}
 		
