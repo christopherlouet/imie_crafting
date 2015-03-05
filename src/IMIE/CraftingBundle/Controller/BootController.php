@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Boot controller.
+ * 
+ */
 namespace IMIE\CraftingBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +21,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\FOSRestController;
 
 /**
- * Boot controller.
+ * BootController class.
  *
  * @Route("/boot")
  */
@@ -45,6 +49,10 @@ class BootController extends FOSRestController {
 	 * @Route("/", name="boot_create")
 	 * @Method("POST")
 	 * @Template("IMIECraftingBundle:Boot:new.html.twig")
+	 *
+	 * @param
+	 *        	Request request
+	 *        	
 	 */
 	public function createAction(Request $request) {
 		$entity = new Boot ();
@@ -111,6 +119,8 @@ class BootController extends FOSRestController {
 	 * @Route("/{id}", name="boot_show")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -135,6 +145,8 @@ class BootController extends FOSRestController {
 	 * @Route("/{id}/edit", name="boot_edit")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
 	 */
 	public function editAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -183,6 +195,9 @@ class BootController extends FOSRestController {
 	 * @Route("/{id}", name="boot_update")
 	 * @Method("PUT")
 	 * @Template("IMIECraftingBundle:Boot:edit.html.twig")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
 	 */
 	public function updateAction(Request $request, $id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -216,6 +231,9 @@ class BootController extends FOSRestController {
 	 *
 	 * @Route("/{id}", name="boot_delete")
 	 * @Method("DELETE")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
 	 */
 	public function deleteAction(Request $request, $id) {
 		$form = $this->createDeleteForm ( $id );
@@ -374,28 +392,28 @@ class BootController extends FOSRestController {
 	 */
 	public function putBootAction() {
 		$em = $this->getDoctrine ()->getManager ();
-	
+		
 		$json = json_decode ( $this->getRequest ()->getContent (), true );
-	
+		
 		$boot = $em->getRepository ( 'IMIECraftingBundle:Boot' )->findOneById ( $json ['id'] );
 		$boot->setName ( $json ['name'] );
 		$boot->setRarity ( $json ['rarity'] );
 		$boot->setLevel ( $json ['level'] );
 		$boot->setWeight ( $json ['weight'] );
-	
+		
 		$em->persist ( $boot );
 		$em->flush ();
-	
+		
 		if ($boot) {
 			$view = $this->view ( array (
-					"boot" => $boot
+					"boot" => $boot 
 			), 200 );
 		} else {
 			$view = $this->view ( array (
-					"message" => "Insert error"
+					"message" => "Insert error" 
 			), 406 );
 		}
-	
+		
 		return $this->handleView ( $view );
 	}
 }

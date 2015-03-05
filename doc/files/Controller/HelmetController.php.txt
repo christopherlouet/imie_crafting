@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Helmet Controller.
+ * 
+ */
 namespace IMIE\CraftingBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +21,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\FOSRestController;
 
 /**
- * Helmet controller.
+ * HelmetController class.
  *
  * @Route("/helmet")
  */
@@ -39,12 +43,15 @@ class HelmetController extends FOSRestController {
 				'entities' => $entities 
 		);
 	}
+	
 	/**
 	 * Creates a new Helmet entity.
 	 *
 	 * @Route("/", name="helmet_create")
 	 * @Method("POST")
 	 * @Template("IMIECraftingBundle:Helmet:new.html.twig")
+	 *
+	 * @param Request $request        	
 	 */
 	public function createAction(Request $request) {
 		$entity = new Helmet ();
@@ -111,6 +118,9 @@ class HelmetController extends FOSRestController {
 	 * @Route("/{id}", name="helmet_show")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
+	 *
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -135,6 +145,9 @@ class HelmetController extends FOSRestController {
 	 * @Route("/{id}/edit", name="helmet_edit")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
+	 *
 	 */
 	public function editAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -183,6 +196,10 @@ class HelmetController extends FOSRestController {
 	 * @Route("/{id}", name="helmet_update")
 	 * @Method("PUT")
 	 * @Template("IMIECraftingBundle:Helmet:edit.html.twig")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
+	 *
 	 */
 	public function updateAction(Request $request, $id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -216,6 +233,10 @@ class HelmetController extends FOSRestController {
 	 *
 	 * @Route("/{id}", name="helmet_delete")
 	 * @Method("DELETE")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
+	 *
 	 */
 	public function deleteAction(Request $request, $id) {
 		$form = $this->createDeleteForm ( $id );
@@ -262,7 +283,6 @@ class HelmetController extends FOSRestController {
 	 * )
 	 */
 	public function getHelmetsAction() {
-
 		$em = $this->getDoctrine ()->getManager ();
 		$helmets = $em->getRepository ( 'IMIECraftingBundle:Helmet' )->findAll ();
 		$view = $this->view ( array (

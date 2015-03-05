@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Perso controller.
+ */
 namespace IMIE\CraftingBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +20,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\FOSRestController;
 
 /**
- * Perso controller.
+ * PersoController class.
  *
  * @Route("/perso")
  */
@@ -45,6 +48,8 @@ class PersoController extends FOSRestController {
 	 * @Route("/", name="perso_create")
 	 * @Method("POST")
 	 * @Template("IMIECraftingBundle:Perso:new.html.twig")
+	 *
+	 * @param Request $request        	
 	 */
 	public function createAction(Request $request) {
 		$entity = new Perso ();
@@ -111,6 +116,8 @@ class PersoController extends FOSRestController {
 	 * @Route("/{id}", name="perso_show")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -135,6 +142,8 @@ class PersoController extends FOSRestController {
 	 * @Route("/{id}/edit", name="perso_edit")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
 	 */
 	public function editAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -183,6 +192,9 @@ class PersoController extends FOSRestController {
 	 * @Route("/{id}", name="perso_update")
 	 * @Method("PUT")
 	 * @Template("IMIECraftingBundle:Perso:edit.html.twig")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
 	 */
 	public function updateAction(Request $request, $id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -216,6 +228,9 @@ class PersoController extends FOSRestController {
 	 *
 	 * @Route("/{id}", name="perso_delete")
 	 * @Method("DELETE")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
 	 */
 	public function deleteAction(Request $request, $id) {
 		$form = $this->createDeleteForm ( $id );
@@ -486,7 +501,7 @@ class PersoController extends FOSRestController {
 		
 		$json = json_decode ( $this->getRequest ()->getContent (), true );
 		
-		$perso = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findOneById ( $json ['id']  );
+		$perso = $em->getRepository ( 'IMIECraftingBundle:Perso' )->findOneById ( $json ['id'] );
 		$perso->setName ( $json ['name'] );
 		$perso->setLevel ( $json ['level'] );
 		$perso->setClass ( $json ['class'] );

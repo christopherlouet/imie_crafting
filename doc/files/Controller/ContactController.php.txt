@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Contact controller.
+ * 
+ */
 namespace IMIE\CraftingBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +21,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\FOSRestController;
 
 /**
- * Contact controller.
+ * ContactController class.
  *
  * @Route("/contact")
  */
@@ -45,6 +49,8 @@ class ContactController extends FOSRestController {
 	 * @Route("/", name="contact_create")
 	 * @Method("POST")
 	 * @Template("IMIECraftingBundle:Contact:new.html.twig")
+	 *
+	 * @param Request $request        	
 	 */
 	public function createAction(Request $request) {
 		$entity = new Contact ();
@@ -111,6 +117,8 @@ class ContactController extends FOSRestController {
 	 * @Route("/{id}", name="contact_show")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
 	 */
 	public function showAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -135,6 +143,8 @@ class ContactController extends FOSRestController {
 	 * @Route("/{id}/edit", name="contact_edit")
 	 * @Method("GET")
 	 * @Template()
+	 *
+	 * @param integer $id        	
 	 */
 	public function editAction($id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -183,6 +193,9 @@ class ContactController extends FOSRestController {
 	 * @Route("/{id}", name="contact_update")
 	 * @Method("PUT")
 	 * @Template("IMIECraftingBundle:Contact:edit.html.twig")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
 	 */
 	public function updateAction(Request $request, $id) {
 		$em = $this->getDoctrine ()->getManager ();
@@ -216,6 +229,9 @@ class ContactController extends FOSRestController {
 	 *
 	 * @Route("/{id}", name="contact_delete")
 	 * @Method("DELETE")
+	 *
+	 * @param Request $request        	
+	 * @param integer $id        	
 	 */
 	public function deleteAction(Request $request, $id) {
 		$form = $this->createDeleteForm ( $id );
@@ -258,7 +274,7 @@ class ContactController extends FOSRestController {
 	 * @Rest\Get("contacts")
 	 * @ApiDoc (
 	 * section = "Contact Entity",
-	 * 	description = "get all contacts from database"
+	 * description = "get all contacts from database"
 	 * )
 	 */
 	public function getContactsAction() {
