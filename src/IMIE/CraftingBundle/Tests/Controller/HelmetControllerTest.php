@@ -1,13 +1,22 @@
 <?php
 
+/**
+ * Helmet controller tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * HelmetControllerTest class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class HelmetControllerTest extends WebTestCase {
 	
 	/**
-	 * Test a complete scenario in the Helmet controller.
+	 * Test a complete scenario.
 	 */
 	public function testCompleteScenario() {
 		
@@ -24,7 +33,7 @@ class HelmetControllerTest extends WebTestCase {
 				'imie_craftingbundle_helmet[name]' => 'TestName',
 				'imie_craftingbundle_helmet[rarity]' => 10,
 				'imie_craftingbundle_helmet[level]' => 20,
-				'imie_craftingbundle_helmet[weight]' => 30
+				'imie_craftingbundle_helmet[weight]' => 30 
 		) );
 		
 		$client->submit ( $form );

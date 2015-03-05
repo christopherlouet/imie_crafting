@@ -1,21 +1,35 @@
 <?php
 
+/**
+ * Boot database tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Repository;
 
 use IMIE\CraftingBundle\Entity\Boot;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * BootDbTest class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class BootDbTest extends WebTestCase {
 	
 	/**
+	 * EntityManager.
 	 *
 	 * @var \Doctrine\ORM\EntityManager
 	 */
 	private $em;
+	
+	/**
+	 * Boot repository.
+	 */
 	private $repository;
 	
 	/**
-	 * Boot Kernel, get Entity Manger, get Boot repository.
+	 * Boot Kernel, get Entity Manager, get Boot repository.
 	 */
 	public function setUp() {
 		static::$kernel = static::createKernel ();
@@ -28,7 +42,6 @@ class BootDbTest extends WebTestCase {
 	 * Search a boot by id.
 	 */
 	public function testSearchOneById() {
-		
 		$boot = new Boot ();
 		$boot->setName ( 'test' );
 		$boot->setLevel ( 1 );
@@ -36,10 +49,10 @@ class BootDbTest extends WebTestCase {
 		$boot->setWeight ( 1 );
 		
 		$this->em->persist ( $boot );
-		$this->em->flush();
+		$this->em->flush ();
 		
 		$bootTest = $this->repository->findOneById ( $boot->getId () );
 		
-		$this->assertEquals( $boot, $bootTest );
+		$this->assertEquals ( $boot, $bootTest );
 	}
 }

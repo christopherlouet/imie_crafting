@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * Contact controller tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Contact controller tests.
+ * ContactControllerTest class.
  *
  * @author Christopher LOUËT <christopher.louet@yahoo.com>
  *        
@@ -13,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class ContactControllerTest extends WebTestCase {
 	
 	/**
-	 * Test a complete scenario in the Contact controller.
+	 * Test a complete scenario.
 	 */
 	public function testCompleteScenario() {
 		

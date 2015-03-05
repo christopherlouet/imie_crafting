@@ -1,10 +1,23 @@
 <?php
 
+/**
+ * Perso controller tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * PersoControllerTest class.
+ * 
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class PersoControllerTest extends WebTestCase {
+	
+	/**
+	 * Test a complete scenario.
+	 */
 	public function testCompleteScenario() {
 		// Create a new client to browse the application
 		$client = static::createClient ();

@@ -1,17 +1,23 @@
 <?php
 
+/**
+ * Boot controller tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Boot controller tests.
+ * BootControllerTest class.
  *
  * @author Christopher LOUËT <christopher.louet@yahoo.com>
  *        
  */
 class BootControllerTest extends WebTestCase {
 	
+	/**
+	 * Test a complete scenario.
+	 */
 	public function testCompleteScenario() {
 		// Create a new client to browse the application
 		$client = static::createClient ();

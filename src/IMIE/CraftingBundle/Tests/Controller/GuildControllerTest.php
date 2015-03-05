@@ -1,13 +1,22 @@
 <?php
 
+/**
+ * Guild controller tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * GuildControllerTest class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class GuildControllerTest extends WebTestCase {
 	
 	/**
-	 * Test a complete scenario in the Guild controller.
+	 * Test a complete scenario.
 	 */
 	public function testCompleteScenario() {
 		// Create a new client to browse the application

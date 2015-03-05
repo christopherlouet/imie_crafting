@@ -1,10 +1,23 @@
 <?php
 
+/**
+ * Leg controller tests.
+ */
 namespace IMIE\CraftingBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * LegControllerTest class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
 class LegControllerTest extends WebTestCase {
+	
+	/**
+	 * Test a complet scenario.
+	 */
 	public function testCompleteScenario() {
 		// Create a new client to browse the application
 		$client = static::createClient ();
