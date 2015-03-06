@@ -1,0 +1,5 @@
+wa72_json_rpc:
+    functions:
+        getBoots:
+            service: "imie_crafting.boot_service"
+            method: "getBootsAction"

@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * Boot service for json-rpc API.
+ * 
+ */
+namespace IMIE\CraftingBundle\Service;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+/**
+ * BootService class.
+ *
+ * @author Christopher LOUËT <christopher.louet@yahoo.com>
+ *        
+ */
+class BootService extends Controller {
+	
+	/**
+	 * Get availalble Boots.
+	 */
+	public function getBootsAction() {
+		
+		// get boots
+		$em = $this->getDoctrine ()->getManager ();
+		$boots = $em->getRepository ( 'IMIECraftingBundle:Boot' )->findAll ();
+		
+		return $boots;
+	}
+}

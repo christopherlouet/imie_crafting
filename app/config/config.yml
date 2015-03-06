@@ -4,6 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: config_fos_rest.yml }
     - { resource: config_nelmio_api_doc.yml }
+    - { resource: config_wa72_json_rpc.yml }
 
 framework:
     #esi:             ~

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a659d15047d4797210ebde7bffafdf47",
+    "hash": "6aab4f3c7e847e35d25173bf42a946a2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2304,6 +2304,55 @@
                 "templating"
             ],
             "time": "2015-01-25 17:32:08"
+        },
+        {
+            "name": "wa72/jsonrpc-bundle",
+            "version": "v0.5.0",
+            "target-dir": "Wa72/JsonRpcBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wasinger/jsonrpc-bundle.git",
+                "reference": "b53a420f6c595ddae767acc4acc04dd7b9167f6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wasinger/jsonrpc-bundle/zipball/b53a420f6c595ddae767acc4acc04dd7b9167f6d",
+                "reference": "b53a420f6c595ddae767acc4acc04dd7b9167f6d",
+                "shasum": ""
+            },
+            "require": {
+                "jms/serializer-bundle": "~0.13",
+                "php": ">=5.3.1",
+                "symfony/symfony": "~2.3"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Wa72\\JsonRpcBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Singer",
+                    "email": "singer@webagentur72.de",
+                    "homepage": "http://www.webagentur72.de"
+                }
+            ],
+            "description": "JSON-RPC server for Symfony2: exposes services registered in the service container as JSON-RPC webservices",
+            "homepage": "http://github.com/wasinger/jsonrpc-bundle",
+            "keywords": [
+                "json",
+                "json-rpc",
+                "jsonrpc",
+                "rpc",
+                "symfony2bundle",
+                "webservice"
+            ],
+            "time": "2014-12-17 16:22:56"
         },
         {
             "name": "willdurand/faker-bundle",
